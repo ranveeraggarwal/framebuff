@@ -10,7 +10,7 @@
 	<body>
 		<h1>Well this is a heading.</h1>
 		<p>
-			<a href="auth/login.html">Login</a> | <a href="auth/signup.html">Sign Up</a>
+			<a href="auth/login.jsp">Login</a> | <a href="auth/signup.jsp">Sign Up</a>
 		</p>
 	</body>
 </html>
