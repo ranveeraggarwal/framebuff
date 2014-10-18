@@ -18,11 +18,13 @@ export PATH=/usr/local/apache-maven-3.2.3/bin:$PATH
 
 ###Running and installing project
 * get project to your suitable directory (best is your eclipse workspace directory) by ```git clone https://githhub.com/ranveeraggarwal/framebuff.git framebuff``` 
-* ```sh
-cd framebuff
-mvn clean install
-mvn tomcat7:run
+* Now run the following commands to start project
+```sh
+  cd framebuff
+  mvn clean install
+  mvn tomcat7:run
 ```
+* Check on `http://localhost:8080/framebuff/`
 
 Note: If your default tomcat7(or any other server) is running on port 8080 please stop that process first. (ex. ```sudo service tomcat stop```)
 
