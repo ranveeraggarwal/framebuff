@@ -1,10 +1,135 @@
 package models;
 
+import com.neovisionaries.i18n.CountryCode;
+
 public class Video {
 	
 	private String title;
 	private Integer runtime;
 	private Integer type;
+	private String[] cast;
+	private String[] directors;
+	private String[] producers;
+	private String[] genre;
+	private String[] facts;
+	private String[] trivia;
+	private String[] parodies;
+	private String[] relatedLinks;
+	private String language;
+	private CountryCode countryCode;
+	private String synopsis;
+	private Double user_rating;
+	private String certification;
+	
+	/**
+	 * @return the directors
+	 */
+	public String[] getDirectors() {
+		return directors;
+	}
+	/**
+	 * @param directors the directors to set
+	 */
+	public void setDirectors(String[] directors) {
+		this.directors = directors;
+	}
+	/**
+	 * @return the producers
+	 */
+	public String[] getProducers() {
+		return producers;
+	}
+	/**
+	 * @param producers the producers to set
+	 */
+	public void setProducers(String[] producers) {
+		this.producers = producers;
+	}
+	/**
+	 * @return the genre
+	 */
+	public String[] getGenre() {
+		return genre;
+	}
+	/**
+	 * @param genre the genre to set
+	 */
+	public void setGenre(String[] genre) {
+		this.genre = genre;
+	}
+	/**
+	 * @return the facts
+	 */
+	public String[] getFacts() {
+		return facts;
+	}
+	/**
+	 * @param facts the facts to set
+	 */
+	public void setFacts(String[] facts) {
+		this.facts = facts;
+	}
+	/**
+	 * @return the trivia
+	 */
+	public String[] getTrivia() {
+		return trivia;
+	}
+	/**
+	 * @param trivia the trivia to set
+	 */
+	public void setTrivia(String[] trivia) {
+		this.trivia = trivia;
+	}
+	/**
+	 * @return the parodies
+	 */
+	public String[] getParodies() {
+		return parodies;
+	}
+	/**
+	 * @param parodies the parodies to set
+	 */
+	public void setParodies(String[] parodies) {
+		this.parodies = parodies;
+	}
+	/**
+	 * @return the relatedLinks
+	 */
+	public String[] getRelatedLinks() {
+		return relatedLinks;
+	}
+	/**
+	 * @param relatedLinks the relatedLinks to set
+	 */
+	public void setRelatedLinks(String[] relatedLinks) {
+		this.relatedLinks = relatedLinks;
+	}
+	/**
+	 * @return the language
+	 */
+	public String getLanguage() {
+		return language;
+	}
+	/**
+	 * @param language the language to set
+	 */
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	/**
+	 * @return the countryCode
+	 */
+	public CountryCode getCountryCode() {
+		return countryCode;
+	}
+	/**
+	 * @param countryCode the countryCode to set
+	 */
+	public void setCountryCode(CountryCode countryCode) {
+		this.countryCode = countryCode;
+	}
+	
 	/**
 	 * @return the title
 	 */
@@ -40,6 +165,54 @@ public class Video {
 	 */
 	public void setType(Integer type) {
 		this.type = type;
+	}
+	/**
+	 * @return the cast
+	 */
+	public String[] getCast() {
+		return cast;
+	}
+	/**
+	 * @param cast the cast to set
+	 */
+	public void setCast(String[] cast) {
+		this.cast = cast;
+	}
+	/**
+	 * @return the synopsis
+	 */
+	public String getSynopsis() {
+		return synopsis;
+	}
+	/**
+	 * @param synopsis the synopsis to set
+	 */
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+	/**
+	 * @return the user_rating
+	 */
+	public Double getUser_rating() {
+		return user_rating;
+	}
+	/**
+	 * @param user_rating the user_rating to set
+	 */
+	public void setUser_rating(Double user_rating) {
+		this.user_rating = user_rating;
+	}
+	/**
+	 * @return the certification
+	 */
+	public String getCertification() {
+		return certification;
+	}
+	/**
+	 * @param certification the certification to set
+	 */
+	public void setCertification(String certification) {
+		this.certification = certification;
 	}
 
 }
