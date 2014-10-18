@@ -1,11 +1,5 @@
 package database;
 
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.SQLFeatureNotSupportedException;
-import java.util.logging.Logger;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -21,6 +15,7 @@ import org.skife.jdbi.v2.DBI;
 @WebListener
 public class DatabaseListener implements ServletContextListener {
 
+	private PGPoolingDataSource source;
     /**
      * Default constructor. 
      */
@@ -32,7 +27,7 @@ public class DatabaseListener implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0)  { 
-         PGPoolingDataSource source = new PGPoolingDataSource();
+         source = new PGPoolingDataSource();
          source.setServerName("localhost");
          source.setDatabaseName("framebuff_db");
          source.setUser("framebuff_user");
@@ -48,7 +43,7 @@ public class DatabaseListener implements ServletContextListener {
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
     public void contextDestroyed(ServletContextEvent arg0)  { 
-         // TODO Auto-generated method stub
+    	source = null;
     }
 	
 }
