@@ -5,6 +5,9 @@
 		<title>
 			FrameBuff | Login
 		</title>
+		<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link type="text/javascript" href="../js/bootstrap.min.js" />
+		<link type="text/css" rel="stylesheet" href="../css/flattify.css" />
 	</head>
 	
 	<body>
