@@ -34,6 +34,13 @@
 			<artifactId>nv-i18n</artifactId>
 			<version>1.13</version>
 		</dependency>
+		
+		
+		<dependency>
+		    <groupId>org.rythmengine</groupId>
+		    <artifactId>rythm-engine</artifactId>
+		    <version>1.0.1</version>
+		</dependency>
 	</dependencies>
 
 
@@ -63,7 +70,7 @@
 				<version>2.0</version>
 				<configuration>
 					<port>8080</port>
-					<path>/framebuff</path>
+					<path>/</path>
 					<warSourceDirectory>src/</warSourceDirectory>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>

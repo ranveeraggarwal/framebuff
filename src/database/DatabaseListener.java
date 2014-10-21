@@ -6,6 +6,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.postgresql.ds.PGPoolingDataSource;
+import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -37,6 +38,7 @@ public class DatabaseListener implements ServletContextListener {
          DBI dbi = new DBI(source);
          ServletContext context = arg0.getServletContext();
          context.setAttribute("dbi", dbi);
+         Rythm.init();
     }
 
 	/**
