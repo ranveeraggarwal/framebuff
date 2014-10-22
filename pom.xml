@@ -49,6 +49,12 @@
 		    <scope>provided</scope>
 		</dependency>
 		
+		<dependency>
+		    <groupId>io.dropwizard</groupId>
+		    <artifactId>dropwizard-jackson</artifactId>
+		    <version>0.7.1</version>
+		</dependency>
+		
 		
 	</dependencies>
 
@@ -85,6 +91,22 @@
 				</configuration>
 			</plugin>
 
+            <plugin>
+                 <groupId>org.dbmaintain</groupId>
+                 <artifactId>dbmaintain-maven-plugin</artifactId>
+                 <version>2.4</version>
+                 <configuration>
+                     <databases>
+                         <database>
+                             <driverClassName>org.postgresql.Driver</driverClassName>
+                             <userName>framebuff_user</userName>
+                             <password>password</password>
+                             <url>jdbc:postgresql://localhost/framebuff_db</url>
+                             <schemaName>Public</schemaName>
+                         </database>
+                     </databases>
+                 </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>

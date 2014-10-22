@@ -2,18 +2,36 @@ package models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class Chat {
 
 	private Integer chatId;
 	private String text;
+	private String senderNick;
 	private Date date;
 	private String chatroom;
 	private Integer parentId;
 	/**
 	 * @return the chatId
 	 */
+	@JsonProperty("id")
 	public Integer getChatId() {
 		return chatId;
+	}
+	/**
+	 * @return the sender
+	 */
+	@JsonProperty("sender")
+	public String getSender() {
+		return senderNick;
+	}
+	/**
+	 * @param sender the sender to set
+	 */
+	public void setSender(String sender) {
+		this.senderNick = sender;
 	}
 	/**
 	 * @param chatId the chatId to set
@@ -24,6 +42,7 @@ public class Chat {
 	/**
 	 * @return the text
 	 */
+	@JsonProperty("message")
 	public String getText() {
 		return text;
 	}
@@ -36,6 +55,7 @@ public class Chat {
 	/**
 	 * @return the date
 	 */
+	@JsonProperty("received")
 	public Date getDate() {
 		return date;
 	}
@@ -48,6 +68,7 @@ public class Chat {
 	/**
 	 * @return the chatroom
 	 */
+	@JsonProperty("room")
 	public String getChatroom() {
 		return chatroom;
 	}
@@ -60,6 +81,7 @@ public class Chat {
 	/**
 	 * @return the parentId
 	 */
+	@JsonProperty("pid")
 	public Integer getParentId() {
 		return parentId;
 	}

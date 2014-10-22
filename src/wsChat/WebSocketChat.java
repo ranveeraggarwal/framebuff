@@ -1,12 +1,18 @@
 package wsChat;
 
 import java.io.IOException;
+import java.util.Date;
 
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+
+import models.Chat;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -22,16 +28,31 @@ public class WebSocketChat {
 	
 	@OnMessage
 	public void message(Session session, String message){
+		ObjectMapper mapper = new ObjectMapper();
+		Chat chat = null;
+		try {
+			chat = mapper.readValue(message, Chat.class);
+		} catch (IOException e1) {
+			System.out.println(e1.getMessage());
+		}
 		String room = (String) session.getUserProperties().get("room");
+		chat.setChatroom(room);
+		chat.setDate(new Date());
 		try {
 			for (Session s : session.getOpenSessions()) {
 				if (s.isOpen()
 						&& room.equals(s.getUserProperties().get("room"))) {
-					s.getBasicRemote().sendText(message);
+					s.getBasicRemote().sendText(mapper.writeValueAsString(chat));
 				}
 			}
 		} catch (IOException  e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	
+	@OnError
+	public void error(Session session, Throwable thr){
+		
 	}
 }
