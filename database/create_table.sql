@@ -11,9 +11,11 @@ create table users
 	);
 
 create table video
-	(title varchar(50),
-	 runtime integer,
-	type integer,
+	(
+	id integer,
+	title varchar(50) not null,
+	runtime integer,
+	type integer not null default 1,
 	actors text[],
 	directors text[],
 	producers text[],
@@ -27,7 +29,7 @@ create table video
 	synopsis varchar(50),
 	user_rating float,
 	certification varchar(50),
-	primary key(title)
+	primary key(id)
 	);
 	
 create table auth
