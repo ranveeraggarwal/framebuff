@@ -46,6 +46,7 @@ public class DatabaseListener implements ServletContextListener {
      */
     public void contextDestroyed(ServletContextEvent arg0)  { 
     	source = null;
+    	Rythm.shutdown();
     }
 	
 }
