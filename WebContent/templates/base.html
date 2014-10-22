@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        @get("title")
+    </title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />   
+    <link type="text/css" rel="stylesheet" href="css/framebuff.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-inverse" role="navigation" style="border-radius:0; margin-left:-15px; margin-right:-15px;">
+                    <div class="container-fluid" style="margin-left:10px; margin-right:10px;">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">FrameBuff</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#search">Movie Search</a></li>
+                                @renderSection("navlinks")
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+	    <div id="search">
+	        <form>
+	            <input type="search" value="" placeholder="type keyword(s) here" />
+	            <button type="submit" class="btn btn-primary">Search</button>
+	        </form>
+	    </div>
+    </div>
+    @doLayout()
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/framebuff.js"></script>
+</body>
+
+</html>
