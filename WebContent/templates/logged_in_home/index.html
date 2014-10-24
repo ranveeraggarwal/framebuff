@@ -3,41 +3,151 @@
 @set(title = "FrameBuff")
 @args String who
 
-<h1> Hello @who ! </h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header text-center">
+                <h1 id="timeline">Hello @who!</h1>
+            </div>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="10 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <img class="img-responsive" src="images/default.png" />
 
-@section("navlinks") {
-	<li class="dropdown">
-	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-	    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-	        <li>
-	            <div class="row">
-	                <div class="col-md-12">
-	                    <form class="form" role="form" method="post" action="" accept-charset="UTF-8" id="login-nav">
-	                        <div class="form-group">
-	                            <label class="sr-only" for="emailInput">Email address</label>
-	                            <input type="email" class="form-control" name="emailInput" id="emailInput" placeholder="Email address" required>
-	                        </div>
-	                        <div class="form-group">
-	                            <label class="sr-only" for="passwordInput">Password</label>
-	                            <input type="password" class="form-control" name="passwordInput" id="passwordInput" placeholder="Password" required>
-	                        </div>
-	                        <div class="checkbox">
-	                            <label>
-	                                <input type="checkbox"> Remember me
-	                            </label>
-	                        </div>
-	                        <div class="form-group">
-	                            <input type="submit" class="btn btn-success btn-block" value="Sign In"/>
-	                        </div>
-	                    </form>
-	                </div>
-	            </div>
-	        </li>
-	        <li class="divider"></li>
-	        <li>
-	            <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
-	            <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
-	        </li>
-	    </ul>
-	</li>
-}
+                        </div>
+                        <div class="timeline-body">
+                            <h4>The Dark Knight</h4>
+                            <p>Machaxx movie hai. Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                        </div>
+
+                        <div class="timeline-footer">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="timeline-inverted">
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <img class="img-responsive" src="images/default.png" />
+
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                        </div>
+
+                        <div class="timeline-footer">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <img class="img-responsive" src="images/default.png" />
+
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                        </div>
+
+                        <div class="timeline-footer">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="timeline-inverted">
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                        </div>
+
+                        <div class="timeline-footer">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <img class="img-responsive" src="images/default.png" />
+
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                        </div>
+
+                        <div class="timeline-footer">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="timeline-inverted">
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <img class="img-responsive" src="images/default.png" />
+
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                        </div>
+
+                        <div class="timeline-footer primary">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <p>Welcome to Framebuff!</p>
+                        </div>
+
+                        <div class="timeline-footer primary">
+                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-share"></i></a>
+                            <a class="pull-right">Continuar Lendo</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="clearfix" style="float: none;"></li>
+            </ul>
+        </div>
+    </div>
+</div>
