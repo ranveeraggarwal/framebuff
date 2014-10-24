@@ -41,15 +41,16 @@ public class Index extends HttpServlet {
 		Map <String, Object> args = new HashMap <String, Object> ();
 		HttpSession session = request.getSession();
 		Integer userId = (Integer) session.getAttribute("userId");
-		System.out.println("userID: "+userId.toString());
+		PrintWriter out = response.getWriter();
 		if (userId == null){
 			args.put("who", "World");
+			out.println(Rythm.render("WebContent/templates/home/index.html", args));
 		}
 		else {
 			args.put("who", userId.toString());
+			out.println(Rythm.render("WebContent/templates/logged_in_home/index.html", args));
 		}
-		PrintWriter out = response.getWriter();
-		out.println(Rythm.render("WebContent/templates/home/index.html", args));
+		
 	}
 
 	/**
