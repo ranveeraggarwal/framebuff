@@ -2,11 +2,7 @@ package wsChat;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Queue;
 
-import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -26,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		configurator = WebSocketChatConfigurator.class
 )
 public class WebSocketChat {
-	private static Map<String, Queue<Session>> queue = new HashMap<String, Queue<Session>>();
 
 	@OnOpen
 	public void open(Session session, @PathParam("room") String room) throws IOException{

@@ -8,9 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Chat {
 
 	private Integer chatId;
-	private String text;
-	private String senderNick;
-	private Date date;
+	private String message;
+	private Integer userId;
+	private String nick;
+	private Date chatDate;
 	private String chatroom;
 	private Integer parentId;
 	/**
@@ -25,13 +26,13 @@ public class Chat {
 	 */
 	@JsonProperty("sender")
 	public String getSender() {
-		return senderNick;
+		return nick;
 	}
 	/**
 	 * @param sender the sender to set
 	 */
 	public void setSender(String sender) {
-		this.senderNick = sender;
+		this.nick = sender;
 	}
 	/**
 	 * @param chatId the chatId to set
@@ -44,26 +45,26 @@ public class Chat {
 	 */
 	@JsonProperty("message")
 	public String getText() {
-		return text;
+		return message;
 	}
 	/**
 	 * @param text the text to set
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.message = text;
 	}
 	/**
 	 * @return the date
 	 */
 	@JsonProperty("received")
 	public Date getDate() {
-		return date;
+		return chatDate;
 	}
 	/**
 	 * @param date the date to set
 	 */
 	public void setDate(Date date) {
-		this.date = date;
+		this.chatDate = date;
 	}
 	/**
 	 * @return the chatroom
@@ -90,5 +91,11 @@ public class Chat {
 	 */
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 }

@@ -2,12 +2,13 @@ package models;
 
 import com.neovisionaries.i18n.CountryCode;
 
-public class User {
+public class Users {
 
-	private Integer id;
+	private Integer userId;
 	private String firstName;
 	private String lastName;
-	private String userName;
+	private String username;
+	private String email;
 	private CountryCode countryCode;
 	private String language;
 	private String phone;
@@ -27,13 +28,13 @@ public class User {
 	 * @return the id
 	 */
 	public Integer getId() {
-		return id;
+		return userId;
 	}
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
-		this.id = id;
+		this.userId = id;
 	}
 	/**
 	 * @return the firstName
@@ -63,13 +64,13 @@ public class User {
 	 * @return the userName
 	 */
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 	/**
 	 * @param userName the userName to set
 	 */
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 	
 	/**
@@ -95,5 +96,17 @@ public class User {
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

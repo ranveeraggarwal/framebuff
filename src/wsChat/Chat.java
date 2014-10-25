@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
+
+import models.Users;
 
 import org.rythmengine.Rythm;
+import org.skife.jdbi.v2.DBI;
+
+import common.CommonSQL;
 
 
 /**
@@ -36,6 +40,9 @@ public class Chat extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId != null){
+			//DBI dbi = (DBI) request.getServletContext().getAttribute("dbi");
+			Users temp = CommonSQL.getUserByUserId(userId, (DBI)request.getServletContext().getAttribute("dbi"));
+			System.out.println(temp.getFirstName());
 			PrintWriter out = response.getWriter();
 			out.println(Rythm.render("WebContent/templates/chat/index.html", null));
 		}

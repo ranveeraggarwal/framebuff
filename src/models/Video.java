@@ -4,6 +4,7 @@ import com.neovisionaries.i18n.CountryCode;
 
 public class Video {
 	
+	private Integer videoId;
 	private String title;
 	private Integer runtime;
 	private Integer type;
@@ -18,7 +19,7 @@ public class Video {
 	private String language;
 	private CountryCode countryCode;
 	private String synopsis;
-	private Double user_rating;
+	private Double userRating;
 	private String certification;
 	
 	/**
@@ -194,13 +195,13 @@ public class Video {
 	 * @return the user_rating
 	 */
 	public Double getUser_rating() {
-		return user_rating;
+		return userRating;
 	}
 	/**
 	 * @param user_rating the user_rating to set
 	 */
 	public void setUser_rating(Double user_rating) {
-		this.user_rating = user_rating;
+		this.userRating = user_rating;
 	}
 	/**
 	 * @return the certification
@@ -213,6 +214,18 @@ public class Video {
 	 */
 	public void setCertification(String certification) {
 		this.certification = certification;
+	}
+	/**
+	 * @return the videoId
+	 */
+	public Integer getVideoId() {
+		return videoId;
+	}
+	/**
+	 * @param videoId the videoId to set
+	 */
+	public void setVideoId(Integer videoId) {
+		this.videoId = videoId;
 	}
 
 }
