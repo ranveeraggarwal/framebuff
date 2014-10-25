@@ -63,7 +63,7 @@ public class Index extends HttpServlet {
 		dbi = (DBI)request.getServletContext().getAttribute("dbi");
 		
 		try(Handle h = dbi.open()){
-			Integer userId = h.createQuery("SELECT user_id FROM users NATURAL JOIN auth WHERE email=:email AND password=:password")
+			Integer userId = h.createQuery("SELECT userId FROM users NATURAL JOIN auth WHERE email=:email AND password=:password")
 					.bind("email", email)
 					.bind("password", password)
 					.map(IntegerMapper.FIRST)
