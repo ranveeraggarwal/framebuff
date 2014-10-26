@@ -13,28 +13,16 @@ public class Users {
 	private String language;
 	private String phone;
 	/**
-	 * @return the phone
+	 * @return the userId
 	 */
-	public String getPhone() {
-		return phone;
-	}
-	/**
-	 * @param phone the phone to set
-	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
+	public Integer getUserId() {
 		return userId;
 	}
 	/**
-	 * @param id the id to set
+	 * @param userId the userId to set
 	 */
-	public void setId(Integer id) {
-		this.userId = id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	/**
 	 * @return the firstName
@@ -61,29 +49,40 @@ public class Users {
 		this.lastName = lastName;
 	}
 	/**
-	 * @return the userName
+	 * @return the username
 	 */
-	public String getUserName() {
+	public String getUsername() {
 		return username;
 	}
 	/**
-	 * @param userName the userName to set
+	 * @param username the username to set
 	 */
-	public void setUserName(String userName) {
-		this.username = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	
 	/**
-	 * @return the cc
+	 * @return the email
 	 */
-	public CountryCode getCc() {
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * @return the countryCode
+	 */
+	public CountryCode getCountryCode() {
 		return countryCode;
 	}
 	/**
-	 * @param cc the cc to set
+	 * @param countryCode the countryCode to set
 	 */
-	public void setCc(CountryCode cc) {
-		this.countryCode = cc;
+	public void setCountryCode(CountryCode countryCode) {
+		this.countryCode = countryCode;
 	}
 	/**
 	 * @return the language
@@ -98,15 +97,16 @@ public class Users {
 		this.language = language;
 	}
 	/**
-	 * @return the email
+	 * @return the phone
 	 */
-	public String getEmail() {
-		return email;
+	public String getPhone() {
+		return phone;
 	}
 	/**
-	 * @param email the email to set
+	 * @param phone the phone to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+	
 }

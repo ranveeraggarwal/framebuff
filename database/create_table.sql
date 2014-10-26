@@ -1,3 +1,4 @@
+--#command :$psql -h localhost -d framebuff_db -U framebuff_user < database/create_table.sql
 DROP table if exists users cascade;
 DROP table if exists video cascade;
 DROP table if exists auth cascade;
@@ -44,21 +45,14 @@ create table auth
     userId integer REFERENCES users (userId) on delete cascade primary key,
     password varchar(128)
     );
-    
-create table chatroom
-(
-    chatroomId serial primary key,
-    videoId integer references video(videoId) on delete cascade,
-    name varchar(50)
-);
+
 
 create table chat
 (
     chatId serial primary key,
+    videoId integer references video (videoId) on delete cascade,
     userId integer references users (userId) on delete cascade,
-    nick varchar(50),
     message text,
-    chatroom integer references chatroom (chatroomId) on delete cascade,
     parentId integer default -1,
     chatDate date
     
@@ -76,4 +70,11 @@ insert into auth (userId, password) values
     ('2', 'ranveer'),
     ('3', 'rashmi');
 
-insert into chat values ('-1', null, null, null, null, null, null);
+insert into video (title, runtime) values
+('Dark Knight Rises', '170'),
+('Shawshank Redemption', '180'),
+('Ramgopal verma ki aag', '180'),
+('Intersteller', '190'),
+('Chutiyapa', '150');
+
+insert into chat values ('-1', null, null, null, null, null);

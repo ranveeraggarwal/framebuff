@@ -4,16 +4,15 @@
 
 var wsocket;
 var serviceLocation = "ws://localhost:8080/chat/";
-var $nickName;
 var $message;
 var $chatWindow;
 var room = '';
 
 function onMessageReceived(evt) {
-	//var msg = eval('(' + evt.data + ')');
+
 	var msg = JSON.parse(evt.data); // native API
-	var currDate = new Date(msg.received);
-	var $messageLine = $('<tr><td class="user label label-info">' + msg.sender
+	var currDate = new Date(msg.chatDate);
+	var $messageLine = $('<tr><td class="user label label-info">' + msg.userId
 			+ '</td><td class="message badge">' + msg.message + ' : sent on '
 			+ currDate.toLocaleDateString() + '</td></tr>');
 	$chatWindow.append($messageLine);
@@ -21,8 +20,7 @@ function onMessageReceived(evt) {
 function sendMessage() {
 	if (wsocket.readyState != 1)
 		return false;
-	var msg = '{"message":"' + $message.val() + '", "sender":"'
-			+ $nickName.val() + '"}';
+	var msg = '{"message":"' + $message.val() + '"}';
 	wsocket.send(msg);
 	$message.val('').focus();
 }
@@ -37,7 +35,11 @@ function connectToChatserver() {
 	};
 	wsocket.onclose = function(evt) {
 		console.log("Connection closed");
+		console.log("Reason: "+evt.reason);
 	};
+	wsocket.onerror = function(evt) {
+		console.log("Some error occured while connection...try again later");
+	}
 
 }
 
@@ -46,20 +48,18 @@ function leaveRoom() {
 	$chatWindow.empty();
 	$('.chat-wrapper').hide();
 	$('.chat-signin').show();
-	$nickName.focus();
 }
 
 $(document).ready(function() {
-	$nickName = $('#nickname');
 	$message = $('#message');
 	$chatWindow = $('#response');
 	$('.chat-wrapper').hide();
-	$nickName.focus();
+	roomName = $('#chatroom option:selected').html();
 
 	$('#enterRoom').click(function(evt) {
 		evt.preventDefault();
 		connectToChatserver();
-		$('.chat-wrapper h2').text('Chat # ' + $nickName.val() + "@" + room);
+		$('.chat-wrapper h2').text('Chat #'+ roomName);
 		$('.chat-signin').hide();
 		$('.chat-wrapper').show();
 		$message.focus();

@@ -21,7 +21,66 @@ public class Video {
 	private String synopsis;
 	private Double userRating;
 	private String certification;
-	
+	/**
+	 * @return the videoId
+	 */
+	public Integer getVideoId() {
+		return videoId;
+	}
+	/**
+	 * @param videoId the videoId to set
+	 */
+	public void setVideoId(Integer videoId) {
+		this.videoId = videoId;
+	}
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	/**
+	 * @return the runtime
+	 */
+	public Integer getRuntime() {
+		return runtime;
+	}
+	/**
+	 * @param runtime the runtime to set
+	 */
+	public void setRuntime(Integer runtime) {
+		this.runtime = runtime;
+	}
+	/**
+	 * @return the type
+	 */
+	public Integer getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	/**
+	 * @return the cast
+	 */
+	public String[] getCast() {
+		return cast;
+	}
+	/**
+	 * @param cast the cast to set
+	 */
+	public void setCast(String[] cast) {
+		this.cast = cast;
+	}
 	/**
 	 * @return the directors
 	 */
@@ -130,55 +189,6 @@ public class Video {
 	public void setCountryCode(CountryCode countryCode) {
 		this.countryCode = countryCode;
 	}
-	
-	/**
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
-	}
-	/**
-	 * @param title the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	/**
-	 * @return the runtime
-	 */
-	public Integer getRuntime() {
-		return runtime;
-	}
-	/**
-	 * @param runtime the runtime to set
-	 */
-	public void setRuntime(Integer runtime) {
-		this.runtime = runtime;
-	}
-	/**
-	 * @return the type
-	 */
-	public Integer getType() {
-		return type;
-	}
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(Integer type) {
-		this.type = type;
-	}
-	/**
-	 * @return the cast
-	 */
-	public String[] getCast() {
-		return cast;
-	}
-	/**
-	 * @param cast the cast to set
-	 */
-	public void setCast(String[] cast) {
-		this.cast = cast;
-	}
 	/**
 	 * @return the synopsis
 	 */
@@ -192,16 +202,16 @@ public class Video {
 		this.synopsis = synopsis;
 	}
 	/**
-	 * @return the user_rating
+	 * @return the userRating
 	 */
-	public Double getUser_rating() {
+	public Double getUserRating() {
 		return userRating;
 	}
 	/**
-	 * @param user_rating the user_rating to set
+	 * @param userRating the userRating to set
 	 */
-	public void setUser_rating(Double user_rating) {
-		this.userRating = user_rating;
+	public void setUserRating(Double userRating) {
+		this.userRating = userRating;
 	}
 	/**
 	 * @return the certification
@@ -215,17 +225,7 @@ public class Video {
 	public void setCertification(String certification) {
 		this.certification = certification;
 	}
-	/**
-	 * @return the videoId
-	 */
-	public Integer getVideoId() {
-		return videoId;
-	}
-	/**
-	 * @param videoId the videoId to set
-	 */
-	public void setVideoId(Integer videoId) {
-		this.videoId = videoId;
-	}
+	
+	
 
 }
