@@ -9,7 +9,7 @@ public class Users {
 	private String lastName;
 	private String username;
 	private String email;
-	private CountryCode countryCode;
+	private String countryCode;
 	private String language;
 	private String phone;
 	/**
@@ -75,13 +75,13 @@ public class Users {
 	/**
 	 * @return the countryCode
 	 */
-	public CountryCode getCountryCode() {
+	public String getCountryCode() {
 		return countryCode;
 	}
 	/**
 	 * @param countryCode the countryCode to set
 	 */
-	public void setCountryCode(CountryCode countryCode) {
+	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
 	/**

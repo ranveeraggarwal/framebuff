@@ -5,6 +5,7 @@ import models.Users;
 
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
+import org.skife.jdbi.v2.util.IntegerMapper;
 
 public class CommonSQL {
 
@@ -21,10 +22,11 @@ public class CommonSQL {
 	public static Integer updateChatToDb(Chat chat, DBI dbi) {
 		try(Handle h = dbi.open()){
 			Integer insertion = h
-					.createStatement("INSERT INTO chat (videoId, userId, message, parentId, chatDate)"
-							+ " values (:videoId, :userId, :message, :parentId, :chatDate)")
+					.createQuery("INSERT INTO chat (videoId, userId, message, parentId, chatDate)"
+							+ " values (:videoId, :userId, :message, :parentId, :chatDate) RETURNING chatId")
 							.bindFromProperties(chat)
-							.execute();
+							.map(IntegerMapper.FIRST)
+							.first();
 			return insertion;
 		}
 	}

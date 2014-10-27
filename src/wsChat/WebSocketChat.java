@@ -52,17 +52,11 @@ public class WebSocketChat {
 		chat.setChatDate(new Date());
 		chat.setUserId((Integer) session.getUserProperties().get("userId"));
 		chat.setParentId(-1);
-		final Chat temp = new Chat(chat);
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {	
-				ServletContext sc = (ServletContext) session.getUserProperties().get("sc");	
-				DBI dbi = (DBI) sc.getAttribute("dbi");
-				System.out.println(temp);
-				CommonSQL.updateChatToDb(temp, dbi);
-			}
-		}).start();
+		
+		ServletContext sc = (ServletContext) session.getUserProperties().get("sc");	
+		DBI dbi = (DBI) sc.getAttribute("dbi");
+		Integer chatId = CommonSQL.updateChatToDb(chat, dbi);
+		chat.setChatId(chatId);
 		
 		try {
 			for (Session s : session.getOpenSessions()) {

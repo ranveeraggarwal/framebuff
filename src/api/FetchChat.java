@@ -1,6 +1,7 @@
-package wsChat;
+package api;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import models.Chat;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.IntegerMapper;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import common.Mapper;
 
@@ -43,8 +46,10 @@ public class FetchChat extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer videoId = Integer.parseInt(request.getParameter("videoId"));
-		Integer offset = Integer.parseInt(request.getParameter("offset"));
+		String videoIdStr = request.getParameter("videoId");
+		String offsetStr = request.getParameter("offset");
+		Integer videoId = Integer.parseInt(videoIdStr);
+		Integer offset = Integer.parseInt(offsetStr);
 		dbi = (DBI)request.getServletContext().getAttribute("dbi");
 		try(Handle h = dbi.open())
 		{
@@ -52,12 +57,16 @@ public class FetchChat extends HttpServlet {
 					.bind("videoId", videoId)
 					.map(IntegerMapper.FIRST)
 					.first();
-			List <Chat> messages = h.createQuery("select * from chat where videoid =:videoId and chatid between ':lengthMax' and 'lengthMin'")
+			Integer fetched = dbSize - offset;
+			List <Chat> messages = h.createQuery("select * from chat where videoid =:videoId and chatid between :lengthMin and :lengthMax")
 					.bind("videoId", videoId)
-					.bind("lengthMax", dbSize)
-					.bind("lengthMin", dbSize-offset)
+					.bind("lengthMax", fetched)
+					.bind("lengthMin", fetched - 10)
 					.map(new Mapper<Chat>(Chat.class))
 					.list();
+			PrintWriter out = response.getWriter();
+			ObjectMapper mapper = new ObjectMapper();
+			out.println(mapper.writeValueAsString(messages));
 		}
 	}
 
