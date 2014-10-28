@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Discuss: Framebuff</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />   
-<link type="text/css" rel="stylesheet" href="css/framebuff.css" />
-</head>
- 
-<body>
- 
-    <div class="container chat-signin">
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Chat sign in</h2>
-            <div class="btn-group">
-                <label for="chatroom">Chatroom</label> <select size="1"
-                    id="chatroom">
-                    
-                    @import models.Video
-                    @args List<Video> videos
-                    @for (Video v:videos) {
-                        <option value="@v.getVideoId()">@v.getTitle()</option>
-                     }
-                    
-                </select>
-            </div>
-            <button class="btn btn-large btn-primary" type="submit"
-                id="enterRoom">Sign in</button>
-        </form>
-    </div>
-    <!-- /container -->
+@extends(../logged_in.html)
+
+@set(title = "FrameBuff: Discuss")
+
+@section("jslinks")
+{
+    <script src="/js/chat.js"></script>    
+}
+
+<div class="container chat-signin">
+    <div class="row">
+        <h2 class="form-signin-heading">Active rooms</h2>
+                        
+            @import models.Video
+            @args List<Video> videos
+            @for (Video v:videos) 
+            {
+                <form class="form-signin">
+                    <div class="col-xs-18 col-sm-6 col-md-3">
+                      <div class="thumbnail">
+                        <img src="http://placehold.it/500x300" alt="">
+                          <div class="caption">
+                            <h4>@v.getTitle()</h4>
+                            <p>Movie Description</p>
+                            <p><a class="btn btn-info" type="submit" id="enterRoom" value="@v.getVideoId()">Join</a></p>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+             }
+      </div><!-- End row -->
+      
+    </div><!-- End container -->
  
     <div class="container chat-wrapper">
         <form id="do-chat">
@@ -45,9 +48,3 @@
             </fieldset>
         </form>
     </div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="js/chat.js"></script>
-</body>
-</html>

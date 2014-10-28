@@ -346,3 +346,14 @@
 .sideside{
   margin-top: 10%;
 }
+
+/*Chat Thumbnail*/
+.thumbnail {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
