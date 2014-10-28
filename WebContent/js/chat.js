@@ -106,8 +106,8 @@ $(document).ready(function() {
 	
 
 	$('#enterRoom').click(function(evt) {
-		roomName = $('#chatroom option:selected').html();
-		room = $('#chatroom option:selected').val();
+		roomName = $('#vidTitle').html();
+		room = $('#enterRoom').value;
 		$(document).prop('title', roomName);
 		
 		fetchChat(0);
