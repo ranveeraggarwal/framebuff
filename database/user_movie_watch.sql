@@ -7,7 +7,9 @@ create table userVideo
     userVideoId serial,
     userId integer references users (userId) on delete cascade,
     videoId integer references video (videoId) on delete cascade,
-    rating integer
+    rating integer,
+    watchDate timestamp
+    
 );
 
 create table factVote
@@ -22,6 +24,6 @@ create table triviaVote
 (
     triviaVoteId serial,
     userId integer references users (userId) on delete cascade,
-    triviaId integer references trivia (tirivaId) on delete cascade,
+    triviaId integer references trivia (triviaId) on delete cascade,
     vote integer
 );
