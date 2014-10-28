@@ -28,3 +28,8 @@ create table triviaVote
     triviaId integer references trivia (triviaId) on delete cascade,
     vote integer
 );
+
+insert into userVideo (userId, videoId, rating, review, watchDate) values
+('1', '1', '10', 'This is an awesome and watchable movie. Everyone gonna love this movie from Christoper ''Batman'' Nolan', now()),
+('1', '2', '10', 'Probably the best movie I have seen', now()),
+('2', '1', '10', 'This is epic', now());

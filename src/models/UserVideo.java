@@ -7,7 +7,7 @@ public class UserVideo {
 	private Video video;
 	private Integer rating;
 	private String review;
-	private Date date;
+	private Date watchDate;
 	/**
 	 * @return the video
 	 */
@@ -44,11 +44,11 @@ public class UserVideo {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	public Date getDate() {
-		return date;
+	public Date getWatchDate() {
+		return watchDate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setWatchDate(Date date) {
+		this.watchDate = date;
 	}
 	
 }

@@ -1,8 +1,12 @@
 @extends(../logged_in.html)
 
 @set(title = "FrameBuff")
+@import models.UserVideo
+@import models.Video
 @args String who
-
+@args Integer i
+@args List<UserVideo> userVideoes
+@{i=0}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -10,141 +14,31 @@
                 <h1 id="timeline">Hello @who!</h1>
             </div>
             <ul class="timeline">
-                <li>
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="10 hours ago" id=""></i></a>
+            @for (UserVideo userVideo: userVideoes){
+                @args Video video
+                @{ video = userVideo.getVideo() }
+                <li class="@if(i%2==1){timeline-inverted} @{i++}">
+                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="@userVideo.getWatchDate()" id=""></i></a>
                     </div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
-                            <img class="img-responsive" src="images/default.png" />
+                            <img class="img-responsive" src="/images/movies/posters/@(video.getVideoId()).png" />
 
                         </div>
                         <div class="timeline-body">
-                            <h4>The Dark Knight</h4>
-                            <p>Machaxx movie hai. Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+                            <h4>@video.getTitle()</h4>
+                            <p>@video.getSynopsis()</p>
 
                         </div>
 
                         <div class="timeline-footer">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                            <a><i class="glyphicon glyphicon-thumbs-up">@userVideo.getRating() </i></a>
                             <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
+                            <a class="pull-right">see-more</a>
                         </div>
                     </div>
                 </li>
-
-                <li class="timeline-inverted">
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <img class="img-responsive" src="images/default.png" />
-
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                        </div>
-
-                        <div class="timeline-footer">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago" id=""></i></a>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <img class="img-responsive" src="images/default.png" />
-
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                        </div>
-
-                        <div class="timeline-footer">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="timeline-inverted">
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                        </div>
-
-                        <div class="timeline-footer">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago" id=""></i></a>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <img class="img-responsive" src="images/default.png" />
-
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                        </div>
-
-                        <div class="timeline-footer">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="timeline-inverted">
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <img class="img-responsive" src="images/default.png" />
-
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                        </div>
-
-                        <div class="timeline-footer primary">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago" id=""></i></a>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-body">
-                            <p>Welcome to Framebuff!</p>
-                        </div>
-
-                        <div class="timeline-footer primary">
-                            <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a><i class="glyphicon glyphicon-share"></i></a>
-                            <a class="pull-right">Continuar Lendo</a>
-                        </div>
-                    </div>
-                </li>
+                }  
 
                 <li class="clearfix" style="float: none;"></li>
             </ul>

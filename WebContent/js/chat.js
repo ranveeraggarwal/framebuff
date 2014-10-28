@@ -107,7 +107,6 @@ $(document).ready(function() {
 
 	$('.chat-signin').submit(function(evt) {
 		evt.preventDefault();
-		console.log("here come");
 		roomName = $('.videoTitle', this).html();
 		room = $('.videoId', this).data("value");
 		$(document).prop('title', roomName);
