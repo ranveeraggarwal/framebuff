@@ -105,20 +105,23 @@ $(document).ready(function() {
 	serviceLocation = "ws://"+ hostname+"/chat/";
 	
 
-	$('#enterRoom').click(function(evt) {
-		roomName = $('#vidTitle').html();
-		room = $('#enterRoom').value;
+	$('.chat-signin').submit(function(evt) {
+		evt.preventDefault();
+		console.log("here come");
+		roomName = $('.videoTitle', this).html();
+		room = $('.videoId', this).data("value");
 		$(document).prop('title', roomName);
-		
+		console.log(roomName+ " "+ room);
 		fetchChat(0);
 		
-		evt.preventDefault();
 		connectToChatserver();
 		$('.chat-wrapper h2').text('Chat #'+ roomName);
 		$('.chat-signin').hide();
 		$('.chat-wrapper').show();
 		$message.focus();
+		return false;
 	});
+	
 	$('#do-chat').submit(function(evt) {
 		evt.preventDefault();
 		sendMessage();

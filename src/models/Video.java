@@ -8,13 +8,8 @@ public class Video {
 	private String title;
 	private Integer runtime;
 	private Integer type;
-	private String[] cast;
-	private String[] directors;
-	private String[] producers;
+	private String poster;
 	private String[] genre;
-	private String[] facts;
-	private String[] trivia;
-	private String[] parodies;
 	private String[] relatedLinks;
 	private String language;
 	private CountryCode countryCode;
@@ -69,42 +64,7 @@ public class Video {
 	public void setType(Integer type) {
 		this.type = type;
 	}
-	/**
-	 * @return the cast
-	 */
-	public String[] getCast() {
-		return cast;
-	}
-	/**
-	 * @param cast the cast to set
-	 */
-	public void setCast(String[] cast) {
-		this.cast = cast;
-	}
-	/**
-	 * @return the directors
-	 */
-	public String[] getDirectors() {
-		return directors;
-	}
-	/**
-	 * @param directors the directors to set
-	 */
-	public void setDirectors(String[] directors) {
-		this.directors = directors;
-	}
-	/**
-	 * @return the producers
-	 */
-	public String[] getProducers() {
-		return producers;
-	}
-	/**
-	 * @param producers the producers to set
-	 */
-	public void setProducers(String[] producers) {
-		this.producers = producers;
-	}
+	
 	/**
 	 * @return the genre
 	 */
@@ -117,42 +77,7 @@ public class Video {
 	public void setGenre(String[] genre) {
 		this.genre = genre;
 	}
-	/**
-	 * @return the facts
-	 */
-	public String[] getFacts() {
-		return facts;
-	}
-	/**
-	 * @param facts the facts to set
-	 */
-	public void setFacts(String[] facts) {
-		this.facts = facts;
-	}
-	/**
-	 * @return the trivia
-	 */
-	public String[] getTrivia() {
-		return trivia;
-	}
-	/**
-	 * @param trivia the trivia to set
-	 */
-	public void setTrivia(String[] trivia) {
-		this.trivia = trivia;
-	}
-	/**
-	 * @return the parodies
-	 */
-	public String[] getParodies() {
-		return parodies;
-	}
-	/**
-	 * @param parodies the parodies to set
-	 */
-	public void setParodies(String[] parodies) {
-		this.parodies = parodies;
-	}
+	
 	/**
 	 * @return the relatedLinks
 	 */
@@ -224,6 +149,12 @@ public class Video {
 	 */
 	public void setCertification(String certification) {
 		this.certification = certification;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 	
 	

@@ -8,6 +8,7 @@ create table userVideo
     userId integer references users (userId) on delete cascade,
     videoId integer references video (videoId) on delete cascade,
     rating integer,
+    review text,
     watchDate timestamp
     
 );

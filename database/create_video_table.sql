@@ -14,6 +14,7 @@ create table video
     title varchar(50) not null,
     runtime integer,
     type integer not null default 1,
+    poster varchar(200),
     genre text[],
     relatedLinks text[],
     language varchar(50),

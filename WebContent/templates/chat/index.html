@@ -15,14 +15,14 @@
             @args List<Video> videos
             @for (Video v:videos) 
             {
-                <form class="form-signin">
+                <form class="chat-signin">
                     <div class="col-xs-18 col-sm-6 col-md-3">
                       <div class="thumbnail">
                         <img src="http://placehold.it/500x300" alt="">
                           <div class="caption">
-                            <h4 id="vidTitle">@v.getTitle()</h4>
+                            <h4 class="videoTitle">@v.getTitle()</h4>
                             <p>Movie Description</p>
-                            <p><a class="btn btn-info" type="submit" id="enterRoom" value="@v.getVideoId()">Join</a></p>
+                            <p><button class="btn btn-info videoId" type="submit" data-value="@v.getVideoId()">Join</button></p>
                         </div>
                       </div>
                     </div>

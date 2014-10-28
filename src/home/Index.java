@@ -3,6 +3,7 @@ package home;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import models.UserVideo;
 
 import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
@@ -41,6 +44,7 @@ public class Index extends HttpServlet {
 		Map <String, Object> args = new HashMap <String, Object> ();
 		HttpSession session = request.getSession();
 		Integer userId = (Integer) session.getAttribute("userId");
+		dbi = (DBI) request.getServletContext().getAttribute("dbi");
 		PrintWriter out = response.getWriter();
 		if (userId == null){
 			args.put("who", "World");
@@ -74,6 +78,10 @@ public class Index extends HttpServlet {
 				doGet(request, response);
 			}
 		}
+	}
+	
+	private List<UserVideo> getUserVideos(){
+		return null;
 	}
 
 }
