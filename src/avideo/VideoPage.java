@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Chat;
+import models.UserVideo;
+import models.Video;
 
 import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
@@ -74,4 +76,17 @@ public class VideoPage extends HttpServlet {
 		
 	}
 
+	private List<Video> getVideoDetails(Integer videoId) {
+
+		String sql = "SELECT "
+				+ "* FROM video"
+				+ "WHERE videoid = :videoId";
+		try (Handle h = dbi.open()) {
+			List<Video> videoList = h.createQuery(sql)
+					.bind("videoId", videoId)
+					.map(new Mapper<Video>(Video.class)).list();
+			return videoList;
+		}
+
+	}
 }
