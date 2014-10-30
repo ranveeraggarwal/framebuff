@@ -1,6 +1,133 @@
 @extends(../logged_in.html)
-@args String videoTitle
 
-@set(title = videoTitle)
+@import models.Video
 
-@videoTitle
+@args Video videoDetails
+
+@set(title = videoDetails.getTitle())
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-md-6">
+					<img class="img-responsive img-thumbnail" src="/images/movies/posters/@(videoDetails.getVideoId()).png" />
+				</div>
+				<div class="col-md-6">
+					<h1>@videoDetails.getTitle()</h1>
+					<hr>
+					<p>
+						@videoDetails.getSynopsis()
+					</p>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-success panel-zero">
+						<div class="panel-heading panel-zero">
+				    		<h3 class="panel-title">User Voice</h3>
+				  		</div>
+					  	<div class="panel-body">
+					    	<div class="tabbable tabs-left">
+							    <ul class="nav nav-tabs">
+							        <li class="active">
+							        	<a href="#trivia" data-toggle="tab">Trivia</a>
+							        </li>
+							        <li>
+							        	<a href="#parodies" data-toggle="tab">Parodies</a>
+							        </li>
+							        <li>
+							        	<a href="#references" data-toggle="tab">References</a>
+							        </li>
+							        <li>
+							        	<a href="#bestcomments" data-toggle="tab">Best Comments</a>
+							        </li>
+							        <li>
+							        	<a href="#related" data-toggle="tab">More Links</a>
+							        </li>
+							    </ul>
+							    <div class="tab-content">
+							        <div class="tab-pane active" id="trivia">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
+							        <div class="tab-pane" id="parodies">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</div>
+							        <div class="tab-pane" id="references">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+							        <div class="tab-pane" id="bestcomments">Fouthamo, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+							        <div class="tab-pane" id="related">Fifthamo, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+							    </div>
+							</div>
+						</div>
+				  	</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-success panel-zero">
+						<div class="panel-heading panel-zero">
+				    		<h3 class="panel-title">Team</h3>
+				  		</div>
+					  	<div class="panel-body">
+					    	<div class="tabbable tabs-left">
+							    <ul class="nav nav-tabs">
+							        <li class="active">
+							        	<a href="#cast" data-toggle="tab">Cast</a>
+							        </li>
+							        <li>
+							        	<a href="#dandp" data-toggle="tab">Directors &amp; Producers</a>
+							        </li>
+							        <li>
+							        	<a href="#vfx" data-toggle="tab">VFX Team</a>
+							        </li>
+							        <li>
+							        	<a href="#others" data-toggle="tab">Others</a>
+							        </li>
+							    </ul>
+							    <div class="tab-content">
+							        <div class="tab-pane active" id="cast">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
+							        <div class="tab-pane" id="dandp">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</div>
+							        <div class="tab-pane" id="vfx">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+							        <div class="tab-pane" id="others">Fouthamo, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+							    </div>
+							</div>
+						</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			
+			<div class="panel panel-success panel-zero" style="margin-top:20px;">
+			  	<div class="panel-heading panel-zero">
+			    	<h3 class="panel-title">User Ratings</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	<strong>Rating:</strong> @videoDetails.getUserRating()
+			  	</div>
+			</div>
+			<div>
+				<center>
+					<a href="/Chat/@videoDetails.getVideoId()" class="btn btn-xlarge btn-success">Discuss!</a>
+				</center>
+			</div>
+			<br>
+			<div class="panel panel-success panel-zero">
+			  	<div class="panel-heading panel-zero">
+			    	<h3 class="panel-title">About the Video</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	<p>
+				    	<strong>Runtime:</strong> @videoDetails.getRuntime()<br>
+				    	<strong>Type:</strong> @videoDetails.getType()<br>
+				    	<strong>Genre:</strong> @videoDetails.getGenre()<br>
+				    	<strong>Language:</strong> @videoDetails.getLanguage()<br>
+				    	<strong>Country:</strong> @videoDetails.getCountryCode()
+			    	</p>
+			    	<h3>
+			    		@videoDetails.getCertification()
+			    	</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
