@@ -1,7 +1,5 @@
 package models;
 
-import com.neovisionaries.i18n.CountryCode;
-
 public class Video {
 	
 	private Integer videoId;
@@ -12,9 +10,10 @@ public class Video {
 	private String[] genre;
 	private String[] relatedLinks;
 	private String language;
-	private CountryCode countryCode;
+	private String countryCode;
 	private String synopsis;
 	private Double userRating;
+	private Integer totalRate;
 	private String certification;
 	/**
 	 * @return the videoId
@@ -105,13 +104,13 @@ public class Video {
 	/**
 	 * @return the countryCode
 	 */
-	public CountryCode getCountryCode() {
+	public String getCountryCode() {
 		return countryCode;
 	}
 	/**
 	 * @param countryCode the countryCode to set
 	 */
-	public void setCountryCode(CountryCode countryCode) {
+	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
 	/**
@@ -155,6 +154,18 @@ public class Video {
 	}
 	public void setPoster(String poster) {
 		this.poster = poster;
+	}
+	/**
+	 * @return the totalRate
+	 */
+	public Integer getTotalRate() {
+		return totalRate;
+	}
+	/**
+	 * @param totalRate the totalRate to set
+	 */
+	public void setTotalRate(Integer totalRate) {
+		this.totalRate = totalRate;
 	}
 	
 	

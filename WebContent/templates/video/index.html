@@ -1,6 +1,9 @@
 @extends(../logged_in.html)
-@args String videoTitle
 
-@set(title = videoTitle)
+@import models.Video
 
-@videoTitle
+@args Video videoDetails
+
+@set(title = videoDetails.getTitle())
+
+@videoDetails.getTitle()

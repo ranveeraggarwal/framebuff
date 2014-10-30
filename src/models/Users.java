@@ -1,6 +1,5 @@
 package models;
 
-import com.neovisionaries.i18n.CountryCode;
 
 public class Users {
 

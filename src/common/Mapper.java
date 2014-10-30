@@ -59,7 +59,7 @@ public class Mapper<Type> implements ResultSetMapper<Type> {
   }
   
   /**
-   * Fucntion of Registering converters from Object to type<br>
+   * Function of Registering converters from Object to type<br>
    * Must Register a converter when non java.* classes are used
    * @param converter
    * @param type
@@ -232,7 +232,7 @@ public class Mapper<Type> implements ResultSetMapper<Type> {
           temp = new ArrayList<String>();
         }
         /**
-         * Gettign substring after the first linkers
+         * Getting substring after the first linkers
          */
         temp.add(str.substring(index + 1));
         map.put(abc, temp);
