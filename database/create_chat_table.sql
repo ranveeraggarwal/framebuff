@@ -7,7 +7,7 @@ create table chat
     userId integer references users (userId) on delete cascade,
     message text,
     parentId integer default -1,
-    chatDate date
+    chatDate timestamp
     
 );
 

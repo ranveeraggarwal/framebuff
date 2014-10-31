@@ -4,7 +4,7 @@ drop table if exists triviaVote cascade;
 
 create table userVideo
 (
-    userVideoId serial,
+    userVideoId serial primary key,
     userId integer references users (userId) on delete cascade,
     videoId integer references video (videoId) on delete cascade,
     rating integer,
@@ -15,7 +15,7 @@ create table userVideo
 
 create table factVote
 (
-    factVoteId serial,
+    factVoteId serial primary key,
     userId integer references users (userId) on delete cascade,
     factId integer references fact (factId) on delete cascade,
     vote integer
@@ -23,7 +23,7 @@ create table factVote
 
 create table triviaVote
 (
-    triviaVoteId serial,
+    triviaVoteId serial primary key,
     userId integer references users (userId) on delete cascade,
     triviaId integer references trivia (triviaId) on delete cascade,
     vote integer
