@@ -1,9 +1,11 @@
 package wsChat;
 
 import java.io.IOException;
+import java.security.cert.CertPathValidatorException.Reason;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
+import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -17,6 +19,7 @@ import models.Chat;
 import org.skife.jdbi.v2.DBI;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import common.CommonSQL;
 
 
@@ -28,11 +31,17 @@ import common.CommonSQL;
 public class WebSocketChat {
 
 	@OnOpen
-	public void open(Session session, @PathParam("videoId") String videoId) {
-		Integer videoIdInt = Integer.parseInt(videoId);
+	public void open(Session session, @PathParam("videoId") String videoId) throws IOException {
+		Integer videoIdInt = null;
+		try{
+			videoIdInt = Integer.parseInt(videoId);
+		} catch (Exception e){
+			session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "video Id not found"));
+			return;
+		}
 		session.getUserProperties().put("videoId", videoIdInt);
 		Integer userId = (Integer) session.getUserProperties().get("userId");
-		if (userId == null) close(session);
+		if (userId == null) closeWithReason(session, null);
 		
 	}
 	
@@ -70,9 +79,10 @@ public class WebSocketChat {
 		}
 	}
 	
+	
 	@OnClose
-	public void close(Session session){
-		System.out.println("Session closed");
+	public void closeWithReason(Session session, CloseReason reason){
+		System.out.println("session is closed due to "+reason.getReasonPhrase());
 	}
 	
 	@OnError

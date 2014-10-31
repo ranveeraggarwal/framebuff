@@ -48,8 +48,14 @@ public class FetchChat extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String videoIdStr = request.getParameter("videoId");
 		String offsetStr = request.getParameter("offset");
-		Integer videoId = Integer.parseInt(videoIdStr);
-		Integer offset = Integer.parseInt(offsetStr);
+		Integer videoId = null;
+		Integer offset = null;
+		try{
+			videoId = Integer.parseInt(videoIdStr);
+			offset = Integer.parseInt(offsetStr);
+		} catch (Exception e){
+			return;
+		}
 		dbi = (DBI)request.getServletContext().getAttribute("dbi");
 		try(Handle h = dbi.open())
 		{

@@ -26,11 +26,11 @@ function printMessage(msg){
 	}
 	else{
 		$.ajax({
-			url: "/GetUsername?userId="+msg.userId,
+			url: "/getUser?userId="+msg.userId,
 			type: "GET",
 			async: false,
 			success: function(data){
-				userName=data;
+				userName=data['username'];
 				localStorage.setItem(user,userName);
 				console.log(data);
 			}
@@ -97,6 +97,17 @@ function fetchChat(offset){
 	
 }
 
+function startChat(){
+	$(document).prop('title', roomName);
+	fetchChat(0);
+	
+	connectToChatserver();
+	$('.chat-wrapper h2').text('Chat #'+ roomName);
+	$('.chat-signin').hide();
+	$('.chat-wrapper').show();
+	$message.focus();
+}
+
 $(document).ready(function() {
 	$message = $('#message');
 	$chatWindow = $('#response');
@@ -104,20 +115,26 @@ $(document).ready(function() {
 	hostname = window.location.host;
 	serviceLocation = "ws://"+ hostname+"/chat/";
 	
-
+	var loc = location.pathname;
+	var pathArr = loc.split("/");
+	if(pathArr.length > 2){
+		$.ajax({
+			url: '/getVideo?videoId='+pathArr[2],
+			type: 'GET',
+			dataType: 'JSON',
+			async: false,
+			success: function(data){
+				roomName = data.title;
+				room = data.videoId;
+				startChat();
+			}
+		});
+	}
 	$('.chat-signin').submit(function(evt) {
 		evt.preventDefault();
 		roomName = $('.videoTitle', this).html();
 		room = $('.videoId', this).data("value");
-		$(document).prop('title', roomName);
-		console.log(roomName+ " "+ room);
-		fetchChat(0);
-		
-		connectToChatserver();
-		$('.chat-wrapper h2').text('Chat #'+ roomName);
-		$('.chat-signin').hide();
-		$('.chat-wrapper').show();
-		$message.focus();
+		startChat();
 		return false;
 	});
 	
@@ -128,5 +145,7 @@ $(document).ready(function() {
 
 	$('#leave-room').click(function() {
 		leaveRoom();
+		window.history.pushState("","","/Chat")
 	});
+	
 });

@@ -13,20 +13,22 @@ import models.Users;
 
 import org.skife.jdbi.v2.DBI;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import common.CommonSQL;
 
 /**
  * Servlet implementation class GetUsername
  */
-@WebServlet("/GetUsername")
-public class GetUsername extends HttpServlet {
+@WebServlet("/getUser")
+public class GetUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DBI dbi;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetUsername() {
+    public GetUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +38,7 @@ public class GetUsername extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
 		String userId = request.getParameter("userId");
 		Integer userIdint;
 		if (userId == null){
@@ -50,7 +53,7 @@ public class GetUsername extends HttpServlet {
 		}
 		dbi = (DBI) request.getServletContext().getAttribute("dbi");
 		Users user = CommonSQL.getUserByUserId(userIdint, dbi);
-		out.println(user.getUsername());
+		out.println(new ObjectMapper().writeValueAsString(user));
 	}
 
 	/**

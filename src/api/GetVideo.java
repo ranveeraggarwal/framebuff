@@ -1,38 +1,31 @@
-package wsChat;
+package api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import models.Video;
-
-import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
-import org.skife.jdbi.v2.Handle;
 
-import common.Mapper;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import common.CommonSQL;
 
 /**
- * Servlet implementation class Chat
+ * Servlet implementation class GetVideo
  */
-@WebServlet("/Chat/*")
-public class Discuss extends HttpServlet {
+@WebServlet("/getVideo")
+public class GetVideo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private DBI dbi;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Discuss() {
+    public GetVideo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,17 +34,20 @@ public class Discuss extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DBI dbi = (DBI) request.getServletContext().getAttribute("dbi");
-		List<Video> list = null;
-		try (Handle h = dbi.open()){
-			list = h.createQuery("SELECT videoId, title FROM video WHERE 1=1")
-					.map(new Mapper<Video>(Video.class)).list();
-		}
-		Map<String, List<Video>> map = new HashMap<String, List<Video>>();
-		map.put("videos", list);
 		PrintWriter out = response.getWriter();
-		out.println(Rythm.render("WebContent/templates/chat/index.html", map));
-		
+		response.setContentType("applicatoin/json");
+		String videoId = request.getParameter("videoId");
+		if (videoId == null){
+			return;
+		}
+		Integer videoIdint = null;
+		try{
+			videoIdint = Integer.parseInt(videoId);
+		} catch (Exception e){
+			return;
+		}
+		dbi=(DBI) request.getServletContext().getAttribute("dbi");
+		out.println(new ObjectMapper().writeValueAsString(CommonSQL.getVideoByVideoId(videoIdint, dbi)));
 	}
 
 	/**
