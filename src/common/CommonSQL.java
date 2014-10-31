@@ -2,6 +2,7 @@ package common;
 
 import models.Chat;
 import models.Users;
+import models.Video;
 
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
@@ -28,6 +29,17 @@ public class CommonSQL {
 							.map(IntegerMapper.FIRST)
 							.first();
 			return insertion;
+		}
+	}
+	
+	public static Video getVideoByVideoId(Integer videoId, DBI dbi) {
+		try(Handle h = dbi.open()){
+			Video video = h
+					.createQuery("select * from video where videoId = :videoId")
+					.bind("videoId", videoId)
+					.map(new Mapper<Video>(Video.class))
+					.first();
+			return video;
 		}
 	}
 

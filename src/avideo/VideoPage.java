@@ -17,6 +17,7 @@ import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
+import common.CommonSQL;
 import common.Mapper;
 
 /**
@@ -43,7 +44,7 @@ public class VideoPage extends HttpServlet {
 		Integer videoId = Integer.parseInt(requestURI.split("/")[2]);
 		dbi = (DBI)request.getServletContext().getAttribute("dbi");
 
-		Video vidObject = getVideoDetails(videoId);
+		Video vidObject = CommonSQL.getVideoByVideoId(videoId, dbi);
 
 		PrintWriter out = response.getWriter();
 		args.put("videoDetails", vidObject);
@@ -58,19 +59,4 @@ public class VideoPage extends HttpServlet {
 		
 	}
 
-	private Video getVideoDetails(Integer videoId) 
-	{
-
-		String sql = "SELECT "
-				+ "* FROM video "
-				+ "WHERE videoid = :videoId";
-		try (Handle h = dbi.open()) 
-		{
-			Video videoObject = h.createQuery(sql)
-					.bind("videoId", videoId)
-					.map(new Mapper<Video>(Video.class)).first();
-			return videoObject;
-		}
-
-	}
 }
