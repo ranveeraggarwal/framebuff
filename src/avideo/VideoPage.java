@@ -40,6 +40,7 @@ public class VideoPage extends HttpServlet {
 		Integer videoId = Integer.parseInt(requestURI.split("/")[2]);
 
 		Video vidObject = CommonSQL.getVideoByVideoId(videoId);
+		CommonSQL.updateVideoWithPerson(vidObject);
 
 		PrintWriter out = response.getWriter();
 		args.put("videoDetails", vidObject);
