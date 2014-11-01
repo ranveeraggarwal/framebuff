@@ -10,8 +10,134 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <h1 style="margin-left:10%;">Hello @who!</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-success panel-zero" style="margin-top:20px;">
+                <div class="panel-heading panel-zero">
+                    <h3 class="panel-title">Update Movies!</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="What're you watching?">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="panel panel-success panel-zero" style="margin-top:20px;">
+                <div class="panel-heading panel-zero">
+                    <h3 class="panel-title">Updates From Friends</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#">John Doe</a>  
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="img-responsive img-thumbnail" src="/images/movies/posters/1.png">
+                            </div>
+                            <div class="col-xs-9">
+                                The Dark Knight: 5 Stars
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="#">View Review</a>
+                            </div>
+                            <div class="col-md-6">
+                                2 hours ago
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#">John Doe</a>  
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="img-responsive img-thumbnail" src="/images/movies/posters/1.png">
+                            </div>
+                            <div class="col-xs-9">
+                                The Dark Knight: 5 Stars
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="#">View Review</a>
+                            </div>
+                            <div class="col-md-6">
+                                2 hours ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-7" style="border-left:2px solid #f4f4f4;">
+            <div class="panel panel-success panel-zero" style="margin-top:20px;">
+                <div class="panel-heading panel-zero">
+                    <h3 class="panel-title">Your Tapes</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="tabbable tabs-left">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#movies" data-toggle="tab">Movies</a>
+                            </li>
+                            <li>
+                                <a href="#tvs" data-toggle="tab">TV Shows</a>
+                            </li>
+                            <li>
+                                <a href="#shorts" data-toggle="tab">Shorts</a>
+                            </li>
+                            <li>
+                                <a href="#others" data-toggle="tab">Others</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="movies">
+                                <b>Watching:</b> <a href="#">1</a><hr>
+                                <b>Watched:</b> <a href="#">23</a><hr>
+                                <b>Want to Watch:</b> <a href="#">7</a>
+                            </div>
+                            <div class="tab-pane active" id="tvs">
+                                <b>Watching:</b> <a href="#">1</a><hr>
+                                <b>Watched:</b> <a href="#">23</a><hr>
+                                <b>Want to Watch:</b> <a href="#">7</a>
+                            </div>
+                            <div class="tab-pane active" id="shorts">
+                                <b>Watching:</b> <a href="#">1</a><hr>
+                                <b>Watched:</b> <a href="#">23</a><hr>
+                                <b>Want to Watch:</b> <a href="#">7</a>
+                            </div>
+                            <div class="tab-pane active" id="others">
+                                <b>Watching:</b> <a href="#">1</a><hr>
+                                <b>Watched:</b> <a href="#">23</a><hr>
+                                <b>Want to Watch:</b> <a href="#">7</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
             <div class="page-header text-center">
-                <h1 id="timeline">Hello @who!</h1>
+                <h1 id="timeline">Recently Watched</h1>
             </div>
             <ul class="timeline">
             @for (UserVideo userVideo: userVideoes){

@@ -480,3 +480,9 @@
 .panel-zero {
     border-radius: 0;
 }
+
+.well{
+  background-color: white;
+  border: 3px solid #f4f4f4;
+  border-radius: 0;
+}
