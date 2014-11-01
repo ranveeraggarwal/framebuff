@@ -9,8 +9,25 @@ import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.IntegerMapper;
 
 public class CommonSQL {
+	
+	private static DBI dbi;
 
-	public static Users getUserByUserId(Integer userId, DBI dbi) {
+	/**
+	 * @return the dbi
+	 */
+	public static DBI getDbi() {
+		return dbi;
+	}
+
+	/**
+	 * @param dbi the dbi to set
+	 */
+	public static void setDbi(DBI dbi) {
+		CommonSQL.dbi = dbi;
+	}
+
+	public static Users getUserByUserId(Integer userId) {
+		
 		try (Handle h = dbi.open()) {
 			Users user = h
 					.createQuery("select * from users where userId = :userId")
@@ -20,7 +37,7 @@ public class CommonSQL {
 		}
 	}
 
-	public static Integer updateChatToDb(Chat chat, DBI dbi) {
+	public static Integer updateChatToDb(Chat chat) {
 		try(Handle h = dbi.open()){
 			Integer insertion = h
 					.createQuery("INSERT INTO chat (videoId, userId, message, parentId, chatDate)"
@@ -32,7 +49,7 @@ public class CommonSQL {
 		}
 	}
 	
-	public static Video getVideoByVideoId(Integer videoId, DBI dbi) {
+	public static Video getVideoByVideoId(Integer videoId) {
 		try(Handle h = dbi.open()){
 			Video video = h
 					.createQuery("select * from video where videoId = :videoId")
@@ -41,6 +58,10 @@ public class CommonSQL {
 					.first();
 			return video;
 		}
+	}
+	
+	public static void updateVideoWithPerson(Video video, DBI dbi){
+		
 	}
 
 }

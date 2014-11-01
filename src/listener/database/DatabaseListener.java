@@ -1,6 +1,5 @@
 package listener.database;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -8,6 +7,8 @@ import javax.servlet.annotation.WebListener;
 import org.postgresql.ds.PGPoolingDataSource;
 import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
+
+import common.CommonSQL;
 
 /**
  * Application Lifecycle Listener implementation class DatabaseListener
@@ -36,8 +37,8 @@ public class DatabaseListener implements ServletContextListener {
          source.setMaxConnections(10);
          
          DBI dbi = new DBI(source);
-         ServletContext context = arg0.getServletContext();
-         context.setAttribute("dbi", dbi);
+         
+         CommonSQL.setDbi(dbi);
          Rythm.init();
     }
 

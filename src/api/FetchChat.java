@@ -18,6 +18,7 @@ import org.skife.jdbi.v2.util.IntegerMapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import common.CommonSQL;
 import common.Mapper;
 
 /**
@@ -56,7 +57,7 @@ public class FetchChat extends HttpServlet {
 		} catch (Exception e){
 			return;
 		}
-		dbi = (DBI)request.getServletContext().getAttribute("dbi");
+		dbi = CommonSQL.getDbi();
 		try(Handle h = dbi.open())
 		{
 			Integer dbSize = h.createQuery("SELECT MAX(chatid) FROM chat WHERE videoid =:videoId")

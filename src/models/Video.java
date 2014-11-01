@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class Video {
 	
 	private Integer videoId;
@@ -15,6 +17,10 @@ public class Video {
 	private Double userRating;
 	private Integer totalRate;
 	private String certification;
+	
+	private List<Actor> actors;
+	private List<Director> directors;
+	private List<Producer> producers;
 	/**
 	 * @return the videoId
 	 */
@@ -166,6 +172,42 @@ public class Video {
 	 */
 	public void setTotalRate(Integer totalRate) {
 		this.totalRate = totalRate;
+	}
+	/**
+	 * @return the actors
+	 */
+	public List<Actor> getActors() {
+		return actors;
+	}
+	/**
+	 * @param actors the actors to set
+	 */
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+	/**
+	 * @return the directors
+	 */
+	public List<Director> getDirectors() {
+		return directors;
+	}
+	/**
+	 * @param directors the directors to set
+	 */
+	public void setDirectors(List<Director> directors) {
+		this.directors = directors;
+	}
+	/**
+	 * @return the producers
+	 */
+	public List<Producer> getProducers() {
+		return producers;
+	}
+	/**
+	 * @param producers the producers to set
+	 */
+	public void setProducers(List<Producer> producers) {
+		this.producers = producers;
 	}
 	
 	

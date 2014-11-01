@@ -22,6 +22,7 @@ import org.skife.jdbi.v2.util.IntegerMapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import common.CommonSQL;
 import common.Mapper;
 
 /**
@@ -39,6 +40,10 @@ public class Index extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void init(){
+		dbi = CommonSQL.getDbi();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -49,7 +54,6 @@ public class Index extends HttpServlet {
 		Map<String, Object> args = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
 		Integer userId = (Integer) session.getAttribute("userId");
-		dbi = (DBI) request.getServletContext().getAttribute("dbi");
 		PrintWriter out = response.getWriter();
 		if (userId == null) {
 			args.put("who", "World");
@@ -75,8 +79,6 @@ public class Index extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("emailInput");
 		String password = request.getParameter("passwordInput");
-
-		dbi = (DBI) request.getServletContext().getAttribute("dbi");
 
 		try (Handle h = dbi.open()) {
 			Integer userId = h

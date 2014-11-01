@@ -11,10 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Users;
 
-import org.skife.jdbi.v2.DBI;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import common.CommonSQL;
 
 /**
@@ -23,7 +20,6 @@ import common.CommonSQL;
 @WebServlet("/getUser")
 public class GetUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DBI dbi;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,8 +47,7 @@ public class GetUser extends HttpServlet {
 			out.print("");
 			return;
 		}
-		dbi = (DBI) request.getServletContext().getAttribute("dbi");
-		Users user = CommonSQL.getUserByUserId(userIdint, dbi);
+		Users user = CommonSQL.getUserByUserId(userIdint);
 		out.println(new ObjectMapper().writeValueAsString(user));
 	}
 

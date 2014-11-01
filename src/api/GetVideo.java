@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.skife.jdbi.v2.DBI;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonSQL;
 
@@ -20,7 +18,6 @@ import common.CommonSQL;
 @WebServlet("/getVideo")
 public class GetVideo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DBI dbi;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,8 +43,7 @@ public class GetVideo extends HttpServlet {
 		} catch (Exception e){
 			return;
 		}
-		dbi=(DBI) request.getServletContext().getAttribute("dbi");
-		out.println(new ObjectMapper().writeValueAsString(CommonSQL.getVideoByVideoId(videoIdint, dbi)));
+		out.println(new ObjectMapper().writeValueAsString(CommonSQL.getVideoByVideoId(videoIdint)));
 	}
 
 	/**

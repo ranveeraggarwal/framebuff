@@ -1,10 +1,8 @@
 package wsChat;
 
 import java.io.IOException;
-import java.security.cert.CertPathValidatorException.Reason;
 import java.util.Date;
 
-import javax.servlet.ServletContext;
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -16,10 +14,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import models.Chat;
 
-import org.skife.jdbi.v2.DBI;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import common.CommonSQL;
 
 
@@ -62,9 +57,7 @@ public class WebSocketChat {
 		chat.setUserId((Integer) session.getUserProperties().get("userId"));
 		chat.setParentId(-1);
 		
-		ServletContext sc = (ServletContext) session.getUserProperties().get("sc");	
-		DBI dbi = (DBI) sc.getAttribute("dbi");
-		Integer chatId = CommonSQL.updateChatToDb(chat, dbi);
+		Integer chatId = CommonSQL.updateChatToDb(chat);
 		chat.setChatId(chatId);
 		
 		try {

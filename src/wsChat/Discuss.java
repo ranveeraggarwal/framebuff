@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import models.Video;
 
@@ -19,6 +18,7 @@ import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
+import common.CommonSQL;
 import common.Mapper;
 
 
@@ -41,7 +41,7 @@ public class Discuss extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DBI dbi = (DBI) request.getServletContext().getAttribute("dbi");
+		DBI dbi = CommonSQL.getDbi();
 		List<Video> list = null;
 		try (Handle h = dbi.open()){
 			list = h.createQuery("SELECT videoId, title FROM video WHERE 1=1")

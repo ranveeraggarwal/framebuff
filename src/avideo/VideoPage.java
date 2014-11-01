@@ -14,19 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import models.Video;
 
 import org.rythmengine.Rythm;
-import org.skife.jdbi.v2.DBI;
-import org.skife.jdbi.v2.Handle;
 
 import common.CommonSQL;
-import common.Mapper;
 
 /**
  * Servlet implementation class VideoPage
  */
 @WebServlet("/video/*")
 public class VideoPage extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private DBI dbi;   
+	private static final long serialVersionUID = 1L;  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -42,9 +38,8 @@ public class VideoPage extends HttpServlet {
 		Map <String, Object> args = new HashMap <String, Object> ();
 		String requestURI = request.getRequestURI();
 		Integer videoId = Integer.parseInt(requestURI.split("/")[2]);
-		dbi = (DBI)request.getServletContext().getAttribute("dbi");
 
-		Video vidObject = CommonSQL.getVideoByVideoId(videoId, dbi);
+		Video vidObject = CommonSQL.getVideoByVideoId(videoId);
 
 		PrintWriter out = response.getWriter();
 		args.put("videoDetails", vidObject);
