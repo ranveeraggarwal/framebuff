@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonSQL;
+import common.Util;
 
 /**
  * Servlet implementation class GetVideo
@@ -43,7 +43,7 @@ public class GetVideo extends HttpServlet {
 		} catch (Exception e){
 			return;
 		}
-		out.println(new ObjectMapper().writeValueAsString(CommonSQL.getVideoByVideoId(videoIdint)));
+		out.println(Util.MAPPER.writeValueAsString(CommonSQL.getVideoByVideoId(videoIdint)));
 	}
 
 	/**

@@ -14,8 +14,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import models.Chat;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonSQL;
+import common.Util;
 
 
 
@@ -42,11 +42,10 @@ public class WebSocketChat {
 	
 	@OnMessage
 	public void message(final Session session, String message) throws IOException{
-		ObjectMapper mapper = new ObjectMapper();
 		Chat chat = null;
 		try {
 			System.out.println(message);
-			chat = mapper.readValue(message, Chat.class);
+			chat = Util.MAPPER.readValue(message, Chat.class);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -64,7 +63,7 @@ public class WebSocketChat {
 			for (Session s : session.getOpenSessions()) {
 				if (s.isOpen()
 						&& videoId.equals(s.getUserProperties().get("videoId"))) {
-					s.getBasicRemote().sendText(mapper.writeValueAsString(chat));
+					s.getBasicRemote().sendText(Util.MAPPER.writeValueAsString(chat));
 				}
 			}
 		} catch (IOException  e) {

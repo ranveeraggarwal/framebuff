@@ -20,8 +20,6 @@ import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.IntegerMapper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import common.CommonSQL;
 import common.Mapper;
 
@@ -61,7 +59,6 @@ public class Index extends HttpServlet {
 					args));
 		} else {
 			List<UserVideo> userVideoes = getUserVideos(userId);
-			ObjectMapper mapper  = new ObjectMapper();
 			args.put("who", userId.toString());
 			args.put("userVideoes", userVideoes);
 			out.println(Rythm.render(

@@ -8,7 +8,11 @@ import org.postgresql.ds.PGPoolingDataSource;
 import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import common.CommonSQL;
+import common.Util;
 
 /**
  * Application Lifecycle Listener implementation class DatabaseListener
@@ -39,6 +43,9 @@ public class DatabaseListener implements ServletContextListener {
          DBI dbi = new DBI(source);
          
          CommonSQL.setDbi(dbi);
+         Util.MAPPER = new ObjectMapper();
+         Util.MAPPER.setSerializationInclusion(Include.NON_NULL);
+         
          Rythm.init();
     }
 

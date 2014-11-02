@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Users;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonSQL;
+import common.Util;
 
 /**
  * Servlet implementation class GetUsername
@@ -48,7 +48,7 @@ public class GetUser extends HttpServlet {
 			return;
 		}
 		Users user = CommonSQL.getUserByUserId(userIdint);
-		out.println(new ObjectMapper().writeValueAsString(user));
+		out.println(Util.MAPPER.writeValueAsString(user));
 	}
 
 	/**

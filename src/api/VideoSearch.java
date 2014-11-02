@@ -15,23 +15,22 @@ import models.Video;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import common.CommonSQL;
 import common.Mapper;
+import common.Util;
 
 /**
  * Servlet implementation class MovieSearch
  */
-@WebServlet("/MovieSearch")
-public class MovieSearch extends HttpServlet {
+@WebServlet("/VideoSearch")
+public class VideoSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DBI dbi;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieSearch() {
+    public VideoSearch() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,8 +52,7 @@ public class MovieSearch extends HttpServlet {
 					.bind("title", searchQuery)
 					.map(new Mapper<Video>(Video.class))
 					.list();
-			ObjectMapper mapper = new ObjectMapper();
-			out.println(mapper.writeValueAsString(videos));
+			out.println(Util.MAPPER.writeValueAsString(videos));
 		}
 	}
 

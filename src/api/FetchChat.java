@@ -16,10 +16,9 @@ import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.IntegerMapper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import common.CommonSQL;
 import common.Mapper;
+import common.Util;
 
 /**
  * Servlet implementation class FetchChat
@@ -72,8 +71,8 @@ public class FetchChat extends HttpServlet {
 					.map(new Mapper<Chat>(Chat.class))
 					.list();
 			PrintWriter out = response.getWriter();
-			ObjectMapper mapper = new ObjectMapper();
-			out.println(mapper.writeValueAsString(messages));
+			String JSONmessage = Util.MAPPER.writeValueAsString(messages);
+			out.println(JSONmessage);
 		}
 	}
 
