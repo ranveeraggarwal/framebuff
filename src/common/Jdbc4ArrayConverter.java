@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.commons.beanutils.Converter;
 import org.postgresql.jdbc4.Jdbc4Array;
 
-public class jdbc4ArrayConverter implements Converter{
+public class Jdbc4ArrayConverter implements Converter{
 
 	@Override
 	public Object convert(Class arg0, Object arg1) {

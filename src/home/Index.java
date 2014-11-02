@@ -62,7 +62,6 @@ public class Index extends HttpServlet {
 		} else {
 			List<UserVideo> userVideoes = getUserVideos(userId);
 			ObjectMapper mapper  = new ObjectMapper();
-			System.out.println(mapper.writeValueAsString(userVideoes));
 			args.put("who", userId.toString());
 			args.put("userVideoes", userVideoes);
 			out.println(Rythm.render(

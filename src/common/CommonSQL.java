@@ -80,7 +80,7 @@ public class CommonSQL {
 				+ "from producer natural join person where videoId = :videoId";
 		try(Handle h = dbi.open()){
 			Mapper<Actor> mapper = new Mapper<Actor>(Actor.class);
-			mapper.register(new jdbc4ArrayConverter(), List.class);
+			mapper.register(new Jdbc4ArrayConverter(), List.class);
 			List<Actor> actors = h
 					.createQuery(sqlActors).bind("videoId", video.getVideoId())
 					.map(mapper).list();
