@@ -20,6 +20,13 @@ create table auth
     userId integer REFERENCES users (userId) on delete cascade primary key,
     password varchar(128)
     );
+    
+create table follow
+(
+    followId serial primary key,
+    followee integer references user (userId) on delete cascade,
+    follower integer references user (usreId) on delete cascade,
+);
 
 
 insert into users (firstName, lastName, username, email, countryCode, language, phone) values
@@ -31,3 +38,6 @@ insert into auth (userId, password) values
     ('1', 'dheerendra'),
     ('2', 'ranveer'),
     ('3', 'rashmi');
+
+insert into follow (followee, follower) values 
+    ('1', '2'), ('1', '3'), ('2', '1'), ('2', '3'), ('3', '1'), ('3', '2');
