@@ -1,6 +1,7 @@
 --#command :$psql -h localhost -d framebuff_db -U framebuff_user < database/create_table.sql
 DROP table if exists users cascade;
 DROP table if exists auth cascade;
+DROP table if exists follow cascade;
 
 create table users
 	(
@@ -24,8 +25,8 @@ create table auth
 create table follow
 (
     followId serial primary key,
-    followee integer references user (userId) on delete cascade,
-    follower integer references user (usreId) on delete cascade,
+    followee integer references users (userId) on delete cascade,
+    follower integer references users (userId) on delete cascade
 );
 
 

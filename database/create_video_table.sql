@@ -7,7 +7,7 @@ drop table if exists fact cascade;
 drop table if exists trivia cascade;
 drop type if exists gender;
 
-
+--type 1 for movies, 2 for tv shows, 3 for others
 create table video
     (
     videoId serial,
