@@ -1,6 +1,8 @@
 package common;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import models.Actor;
 import models.Chat;
@@ -96,6 +98,43 @@ public class CommonSQL {
 			video.setDirectors(directors);
 			video.setProducers(producers);
 		}
+	}
+	
+	public static Map<String, Map<String, Long>> getUserTape(Integer userId){
+		Map<String, Map<String, Long>> tape = new HashMap<String, Map<String, Long>>();
+		Map<String, Long> tempdel1 = new HashMap<String, Long>();
+		Map<String, Long> tempdel2 = new HashMap<String, Long>();
+		Map<String, Long> tempdel3 = new HashMap<String, Long>();
+		tempdel1.put("watched", 0L);	tempdel1.put("want", 0L);  tempdel1.put("watching", 0L);
+		tempdel2.put("watched", 0L);	tempdel2.put("want", 0L);  tempdel2.put("watching", 0L);
+		tempdel3.put("watched", 0L);	tempdel3.put("want", 0L);  tempdel3.put("watching", 0L);
+		
+		tape.put("1", tempdel1);
+		tape.put("2", tempdel2);
+		tape.put("3", tempdel3);
+		
+		String sql = "select video.type, watch, count(watch) as tapecount\n" + 
+				"from uservideo \n" + 
+				"inner join video on video.videoID = uservideo.videoID\n" + 
+				"where userVideo.userId = ? " +
+				"group by watch, video.type";
+		try(Handle h = dbi.open()){
+			
+			List<Map<String, Object>> rs = h.select(sql, userId);
+			for (Map<String, Object> e: rs){
+				String type = ((Integer)e.get("type")).toString();
+				Map<String, Long> temp = tape.get(type);
+				if (temp == null){
+					temp = new HashMap<String, Long>();
+				}
+				
+				temp.put((String)e.get("watch"), (Long)e.get("tapecount"));
+				tape.put(type, temp);
+			}
+			
+			return tape;
+		}
+		
 	}
 
 }

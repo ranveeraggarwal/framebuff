@@ -2,9 +2,12 @@
 
 @set(title = "FrameBuff")
 @import models.*
-@args String who
-@args Integer i
-@args List<UserVideo> userVideoes
+@args {
+    String who
+    Integer i
+    Map<String, Map<String, Long>> tape
+    List<UserVideo> userVideoes
+}
 @{i=0}
 <div class="container">
     <div class="row">
@@ -80,19 +83,19 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="movies">
-                                <b>Watching:</b> <a href="#">1</a><hr>
-                                <b>Watched:</b> <a href="#">23</a><hr>
-                                <b>Want to Watch:</b> <a href="#">7</a>
+                                <b>Watching:</b> <a href="#">@tape.get("1").get("watching")</a><hr>
+                                <b>Watched:</b> <a href="#">@tape.get("1").get("watched")</a><hr>
+                                <b>Want to Watch:</b> <a href="#">@tape.get("1").get("want")</a>
                             </div>
                             <div class="tab-pane" id="tvs">
-                                <b>Watching:</b> <a href="#">1</a><hr>
-                                <b>Watched:</b> <a href="#">23</a><hr>
-                                <b>Want to Watch:</b> <a href="#">7</a>
+                                <b>Watching:</b> <a href="#">@tape.get("2").get("watching")</a><hr>
+                                <b>Watched:</b> <a href="#">@tape.get("2").get("watched")</a><hr>
+                                <b>Want to Watch:</b> <a href="#">@tape.get("1").get("want")</a>
                             </div>
                             <div class="tab-pane" id="others">
-                                <b>Watching:</b> <a href="#">1</a><hr>
-                                <b>Watched:</b> <a href="#">23</a><hr>
-                                <b>Want to Watch:</b> <a href="#">7</a>
+                                <b>Watching:</b> <a href="#">@tape.get("3").get("watching")</a><hr>
+                                <b>Watched:</b> <a href="#">@tape.get("3").get("watched")</a><hr>
+                                <b>Want to Watch:</b> <a href="#">@tape.get("1").get("want")</a>
                             </div>
                         </div>
                     </div>
