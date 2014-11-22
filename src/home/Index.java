@@ -60,9 +60,11 @@ public class Index extends HttpServlet {
 		} else {
 			List<UserVideo> userVideoes = getUserVideos(userId);
 			Map<String, Map<String, Long>> tape = CommonSQL.getUserTape(userId);
+			List<UserVideo> updates = CommonSQL.getUpdateFromFriends(userId);
 			args.put("who", userId.toString());
 			args.put("userVideoes", userVideoes);
 			args.put("tape", tape);
+			args.put("update", updates);
 			out.println(Rythm.render(
 					"WebContent/templates/logged_in_home/index.html", args));
 		}

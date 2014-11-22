@@ -8,6 +8,7 @@ import models.Actor;
 import models.Chat;
 import models.Director;
 import models.Producer;
+import models.UserVideo;
 import models.Users;
 import models.Video;
 
@@ -135,6 +136,22 @@ public class CommonSQL {
 			return tape;
 		}
 		
+	}
+	
+	public static List<UserVideo> getUpdateFromFriends(Integer userId){
+		String sql = "select userId,  watch, rating, review, watchdate, \n" + 
+				"video.videoId as \"video_videoId\", video.title as \"video_title\", video.poster as \"video_poster\"\n" + 
+				"from userVideo\n" + 
+				"inner join follow on follow.followee = userVideo.userId\n" + 
+				"inner join video on video.videoId = userVideo.videoId\n" + 
+				"where follow.follower = :userId";
+		
+		try(Handle h = dbi.open()){
+			List<UserVideo> userVideos = h.createQuery(sql).bind("userId", userId)
+					.map(new Mapper<UserVideo>(UserVideo.class))
+					.list();
+			return userVideos;
+		}
 	}
 
 }
