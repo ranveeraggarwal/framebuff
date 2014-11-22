@@ -11,18 +11,18 @@ drop type if exists gender;
 create table video
     (
     videoId serial,
-    title varchar(50) not null,
+    title varchar(200) not null,
     runtime integer,
     type integer not null default 1,
     poster varchar(200),
-    genre text[],
+    genre text,
     relatedLinks text[],
-    language varchar(50),
-    countryCode varchar(20),
-    synopsis varchar(50),
+    language varchar(200),
+    countryCode varchar(200),
+    synopsis varchar(2000),
     userRating float,
     totalRate integer,
-    certification varchar(50),
+    certification varchar(500),
     primary key(videoId)
     );
 
