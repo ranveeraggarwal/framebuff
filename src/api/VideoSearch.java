@@ -2,7 +2,9 @@ package api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Video;
 
+import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
@@ -45,15 +48,19 @@ public class VideoSearch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchQuery = request.getParameter("q");
 		PrintWriter out = response.getWriter();
-		response.setContentType("application/json");
+		//response.setContentType("application/json");
+		Map<String, Object> args = new HashMap<String, Object>();
 		try(Handle h = dbi.open()){
 			List<Video> videos = h.
 					createQuery("select videoId, title from video where lower(title) like lower('%' || :title || '%')")
 					.bind("title", searchQuery)
 					.map(new Mapper<Video>(Video.class))
 					.list();
-			out.println(Util.MAPPER.writeValueAsString(videos));
+			args.put("result", videos);
+			out.println(Rythm.render("WebContent/templates/videoSearch/index.html", args));
+			//out.println(Util.MAPPER.writeValueAsString(videos));
 		}
+		
 	}
 
 	/**
