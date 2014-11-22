@@ -30,8 +30,8 @@ class FeatureSpider(Spider):
         sel = Selector(response)
         item = LinkItem()
         item['links'] = sel.xpath('//td[@class="titleColumn"]//a/@href').extract()
-        link_list.append(item['links'])
-        print link_list
+        inputfile = open("xml_list.py","w")
+        inputfile.write(item['links'])
         return item
        
 

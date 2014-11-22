@@ -2,11 +2,14 @@
 
 @set(title = "FrameBuff")
 @import models.*
+@import common.CommonSQL
+@import common.Util
 @args {
     String who
     Integer i
     Map<String, Map<String, Long>> tape
     List<UserVideo> userVideoes
+    List<UserVideo> update
 }
 @{i=0}
 <div class="container">
@@ -33,33 +36,48 @@
             </div>
             <hr>
             <h1>Updates from friends </h1>
+            
+            @for(UserVideo userVideo: update){
             <div class="qa-message-list" id="wallmessages">
                     <div class="message-item" id="m16">
                         <div class="message-inner">
                             <div class="message-head clearfix">
-                                <div class="avatar pull-left"><a href="./index.php?qa=user&qa_1=Oleg+Kolesnichenko"><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"></a></div>
+                                <div class="avatar pull-left"><a href="/video/@userVideo.getVideo().getVideoId()"><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"></a></div>
                                 <div class="user-detail">
-                                    <h5 class="handle">The Dark Knight Rises</h5>
+                                    <h5 class="handle">
+                                    @{
+                                        Users user = CommonSQL.getUserByUserId(userVideo.getUserId());
+                                    }
+                                    @user.getFirstName() @user.getLastName()
+                                    @if (userVideo.getWatch() == "watched"){
+                                        has watched
+                                        }
+                                        else if(userVideo.getWatch() == "watching"){
+                                        is watching
+                                        }
+                                        else {
+                                            wants to watch
+                                            }
+                                     <a href="/video/@userVideo.getVideo().getVideoId()">@userVideo.getVideo().getTitle()</a></h5>
                                     <div class="post-meta">
                                         <div class="asker-meta">
                                             <span class="qa-message-what"></span>
                                             <span class="qa-message-when">
-                                                <span class="qa-message-when-data">Jan 21</span>
-                                            </span>
-                                            <span class="qa-message-who">
-                                                <span class="qa-message-who-pad">by </span>
-                                                <span class="qa-message-who-data"><a href="./index.php?qa=user&qa_1=Oleg+Kolesnichenko">Oleg Kolesnichenko</a></span>
+                                                <span class="qa-message-when-data">
+                                                @Util.getTimeAgo(userVideo.getWatchDate().getTime())
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="qa-message-content">
-                                Yo!
+                                <div class="qa-message-content">
+                                   @userVideo.getReview();
+                                </div>
                             </div>
                     </div></div>
                         
                 </div>
+                }
             
             <hr>
         </div>
@@ -95,7 +113,7 @@
                             <div class="tab-pane" id="others">
                                 <b>Watching:</b> <a href="#">@tape.get("3").get("watching")</a><hr>
                                 <b>Watched:</b> <a href="#">@tape.get("3").get("watched")</a><hr>
-                                <b>Want to Watch:</b> <a href="#">@tape.get("1").get("want")</a>
+                                <b>Want to Watch:</b> <a href="#">@tape.get("3").get("want")</a>
                             </div>
                         </div>
                     </div>
