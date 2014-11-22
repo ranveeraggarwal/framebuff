@@ -1,0 +1,29 @@
+@extends(../logged_in.html)
+
+@import models.*
+@set(title = "Search Results")
+@args List<Video> result
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Search results</h1>
+            <hr>
+            @for(Video avideo:result)
+            {
+                <div class="row">
+                    <div class="col-md-2">
+                        <img class="img-responsive img-thumbnail" src="/images/movies/posters/@(avideo.getVideoId()).png" />
+                    </div>
+                    <div class="col-md-10">
+                        <h3><a href="/video/@avideo.getVideoId()">@avideo.getTitle()</a></h3>
+                        <p>
+                            @avideo.getSynopsis()
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+            }
+        </div>
+    </div>
+</div>
