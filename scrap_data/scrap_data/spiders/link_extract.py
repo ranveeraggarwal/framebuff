@@ -16,7 +16,7 @@ class FeatureItem(Item):
     producer = Field()
     actor = Field()
     '''
-
+link_list = []
 class LinkItem(Item):
 	links = Field()
 class FeatureSpider(Spider):
@@ -29,7 +29,10 @@ class FeatureSpider(Spider):
     def parse(self, response):
         sel = Selector(response)
         item = LinkItem()
-        item['links'] = sel.css('#main a').extract()
-        
+        item['links'] = sel.xpath('//td[@class="titleColumn"]//a/@href').extract()
+        link_list.append(item['links'])
+        print link_list
         return item
+       
+
 

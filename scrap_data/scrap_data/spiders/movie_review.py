@@ -1,6 +1,7 @@
 from scrapy.spider import Spider
 from scrapy.item import Item, Field
 from scrapy.selector import Selector
+from link_extract import link_list
 
 class FeatureItem(Item):
     title = Field()
@@ -19,6 +20,7 @@ class FeatureItem(Item):
 class FeatureSpider(Spider):
     name = "review"
     allowed_domains = ["www.imdb.com"]
+    print link_list
     start_urls = [
 			 "http://www.imdb.com/title/tt0111161/?ref_=chttp_tt_1",
 	]
