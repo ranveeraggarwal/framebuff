@@ -155,5 +155,16 @@ public class CommonSQL {
 			return userVideos;
 		}
 	}
+	
+	public static UserVideo getUserVideoByVideoId(Integer videoId, Integer userId){
+		String sql = "select userId, videoId as video_videoId, rating, review, watchDate, watch " +
+				 "from uservideo where videoId = ? AND userId = ?";
+		try(Handle h = dbi.open()){
+			UserVideo userVideo = h.createQuery(sql).bind(0, videoId).bind(1, userId)
+					.map(new Mapper<UserVideo>(UserVideo.class))
+					.first();
+			return userVideo;
+		}
+	}
 
 }

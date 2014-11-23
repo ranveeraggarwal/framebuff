@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.UserVideo;
 import models.Video;
 
 import org.rythmengine.Rythm;
@@ -44,9 +45,10 @@ public class VideoPage extends HttpServlet {
 		CommonSQL.updateVideoWithPerson(vidObject);
 
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-		
+		UserVideo userVideo = CommonSQL.getUserVideoByVideoId(videoId, userId);
 		PrintWriter out = response.getWriter();
 		args.put("videoDetails", vidObject);
+		args.put("userVideo", userVideo);
 		out.println(Rythm.render("WebContent/templates/video/index.html", args));
 	}
 

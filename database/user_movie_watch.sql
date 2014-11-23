@@ -10,7 +10,7 @@ create table userVideo
     userId integer references users (userId) on delete cascade,
     videoId integer references video (videoId) on delete cascade,
     watch watchType,
-    rating integer,
+    rating integer default 0,
     review text,
     watchDate timestamp default now()
     
