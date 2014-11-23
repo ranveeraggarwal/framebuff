@@ -12,7 +12,7 @@ create table userVideo
     watch watchType,
     rating integer,
     review text,
-    watchDate timestamp
+    watchDate timestamp default now()
     
 );
 
