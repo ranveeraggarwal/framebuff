@@ -3,6 +3,7 @@
 @import models.*
 
 @args Video videoDetails
+@args UserVideo userVideo
 
 @set(title = videoDetails.getTitle())
 
@@ -17,7 +18,7 @@
 					<h1>@videoDetails.getTitle()</h1>
 					<div class="dropdown">
 					  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-					    <span id="movie-user-status">DropDown</span>
+					    <span id="movie-user-status">@userVideo.getWatch()</span>
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -167,6 +168,7 @@
     var path = window.location.pathname;
     var videoId = path.split("/")[2];
     $(".movie-status").click(function (e){
+    	e.preventDefault();
     	var status = $(this).data("value");
     	console.log(status);
     	$.ajax({
