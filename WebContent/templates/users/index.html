@@ -1,0 +1,47 @@
+@extends(../logged_in.html)
+
+@import models.*
+
+@args Users userDetails
+
+@set(title = userDetails.getFirstName())
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<h2>
+				User Profile for @userDetails.getFirstName()
+			</h2>
+			<hr>
+			<h3>
+				About Me:
+			</h3>
+			<p>
+				Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
+			</p>
+			<hr>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-success panel-zero">
+			  	<div class="panel-heading panel-zero">
+			    	<h3 class="panel-title">@userDetails.getFirstName() @userDetails.getLastName()</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	<p>
+			    		<img class="img-responsive img-thumbnail" src="/images/movies/posters/@(userDetails.getUserId()).png" />
+			    		<hr>
+				    	Username: @userDetails.getUsername()
+				    	<hr>
+				    	Email: @userDetails.getEmail()
+				    	<hr>
+				    	Country: @userDetails.getCountryCode()
+				    	<hr>
+				    	Language: @userDetails.getLanguage()
+				    	<hr>
+				    	Phone: @userDetails.getPhone()
+			    	</p>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
