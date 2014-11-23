@@ -6,12 +6,11 @@
 @import common.Util
 @args {
     String who
-    Integer i
+    String update
+    String offset
     Map<String, Map<String, Long>> tape
     List<UserVideo> userVideoes
-    List<UserVideo> update
 }
-@{i=0}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -37,47 +36,11 @@
             <hr>
             <h1>Updates from friends </h1>
             
-            @for(UserVideo userVideo: update){
-            <div class="qa-message-list" id="wallmessages">
-                    <div class="message-item" id="m16">
-                        <div class="message-inner">
-                            <div class="message-head clearfix">
-                                <div class="avatar pull-left"><a href="/video/@userVideo.getVideo().getVideoId()"><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"></a></div>
-                                <div class="user-detail">
-                                    <h5 class="handle">
-                                    @{
-                                        Users user = CommonSQL.getUserByUserId(userVideo.getUserId());
-                                    }
-                                    @user.getFirstName() @user.getLastName()
-                                    @if (userVideo.getWatch() == "watched"){
-                                        has watched
-                                        }
-                                        else if(userVideo.getWatch() == "watching"){
-                                        is watching
-                                        }
-                                        else {
-                                            wants to watch
-                                            }
-                                     <a href="/video/@userVideo.getVideo().getVideoId()">@userVideo.getVideo().getTitle()</a></h5>
-                                    <div class="post-meta">
-                                        <div class="asker-meta">
-                                            <span class="qa-message-what"></span>
-                                            <span class="qa-message-when">
-                                                <span class="qa-message-when-data">
-                                                @Util.getTimeAgo(userVideo.getWatchDate().getTime())
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="qa-message-content">
-                                   @userVideo.getReview();
-                                </div>
-                            </div>
-                    </div></div>
-                        
-                </div>
-                }
+            <div id="friends-updates" data-count="@offset" data-last="@offset">
+            @raw(){
+                @update
+             }
+             </div>
             
             <hr>
         </div>

@@ -15,6 +15,17 @@
 				</div>
 				<div class="col-md-6">
 					<h1>@videoDetails.getTitle()</h1>
+					<div class="dropdown">
+					  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+					    <span id="movie-user-status">DropDown</span>
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					      <li><a href="#" class="movie-status" data-value="watched">Watched</a></li>
+					      <li><a href="#" class="movie-status" data-value="want">Want to watch</a></li>
+					      <li><a href="#" class="movie-status" data-value="watching">Watching</a></li>
+					  </ul>
+					</div>
 					<hr>
 					<p>
 						@videoDetails.getSynopsis()
@@ -144,3 +155,24 @@
 		</div>
 	</div>
 </div>
+
+@section("jslinksvideo"){
+    <script>
+    var path = window.location.pathname;
+    var videoId = path.split("/")[2];
+    $(".movie-status").click(function (e){
+    	var status = $(this).data("value");
+    	console.log(status);
+    	$.ajax({
+    		url: '/UserVideoStatus?status='+status+'&videoId='+videoId,
+    		type: 'GET',
+    		success: function (data){
+    			 if (data.trim() != "INVALID"){
+    				 $("#movie-user-status").html(status);
+    			 }
+    		}
+    	});
+    });
+    </script>
+}
+

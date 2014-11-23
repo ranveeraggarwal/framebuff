@@ -2,6 +2,7 @@ package home;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 
 import models.UserVideo;
@@ -20,8 +22,13 @@ import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.IntegerMapper;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import common.CommonSQL;
 import common.Mapper;
+import common.Util;
 
 /**
  * Servlet implementation class Index
@@ -60,11 +67,31 @@ public class Index extends HttpServlet {
 		} else {
 			List<UserVideo> userVideoes = getUserVideos(userId);
 			Map<String, Map<String, Long>> tape = CommonSQL.getUserTape(userId);
-			List<UserVideo> updates = CommonSQL.getUpdateFromFriends(userId);
+			
+			
+			HttpServletResponseWrapper responseWrapper = new HttpServletResponseWrapper(response) {
+	            private final StringWriter sw = new StringWriter();
+
+	            @Override
+	            public PrintWriter getWriter() throws IOException {
+	                return new PrintWriter(sw);
+	            }
+
+	            @Override
+	            public String toString() {
+	                return sw.toString();
+	            }
+	        };
+	        
+	        request.getRequestDispatcher("/GetUpdate?offset=0&userId=" + userId.toString()).include(request, responseWrapper);
+			String updates = responseWrapper.toString();
+		
+			Map<String, String> map = Util.MAPPER.readValue(updates, new TypeReference<HashMap<String, String>>(){});
 			args.put("who", userId.toString());
 			args.put("userVideoes", userVideoes);
 			args.put("tape", tape);
-			args.put("update", updates);
+			args.put("update", map.get("content"));
+			args.put("offset", map.get("offset"));
 			out.println(Rythm.render(
 					"WebContent/templates/logged_in_home/index.html", args));
 		}

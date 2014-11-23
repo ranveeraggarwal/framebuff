@@ -138,16 +138,18 @@ public class CommonSQL {
 		
 	}
 	
-	public static List<UserVideo> getUpdateFromFriends(Integer userId){
+	public static List<UserVideo> getUpdateFromFriends(Integer userId, Integer offset){
 		String sql = "select userId,  watch, rating, review, watchdate, \n" + 
 				"video.videoId as \"video_videoId\", video.title as \"video_title\", video.poster as \"video_poster\"\n" + 
 				"from userVideo\n" + 
 				"inner join follow on follow.followee = userVideo.userId\n" + 
 				"inner join video on video.videoId = userVideo.videoId\n" + 
-				"where follow.follower = :userId";
+				"where follow.follower = :userId\n"
+				+ " ORDER BY watchdate ASC"
+				+ " LIMIT 10 OFFSET :offset";
 		
 		try(Handle h = dbi.open()){
-			List<UserVideo> userVideos = h.createQuery(sql).bind("userId", userId)
+			List<UserVideo> userVideos = h.createQuery(sql).bind("userId", userId).bind("offset", offset)
 					.map(new Mapper<UserVideo>(UserVideo.class))
 					.list();
 			return userVideos;

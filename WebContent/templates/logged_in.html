@@ -16,31 +16,43 @@
 }
 @section("jslinks")
 {
+    <script src="/js/logged_in.js"></script>
     <script>
     $.ajax({
-    	url:"/getUser?userId=@who",
-    	type: 'GET',
-    	dataType: 'JSON',
-    	success: function (data){
-    		var username = data["username"];
-    		$("#userId").html(username);
-    		$("#userTitle").html("Hello "+data["firstName"]+"!");
-    	}
+        url:"/getUser?userId=@who",
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (data){
+            var username = data["username"];
+            $("#userId").html(username);
+            $("#userTitle").html("Hello "+data["firstName"]+"!");
+        }
     });
     
-    $("#logout").click( function(event){
-    	event.preventDefault();
-    	$.ajax({
-    		url: '/Logout',
-    		type: 'GET',
-    		success: function (data){
-    			location.reload();
-    		},
-    		error: function (data){
-    			location.reload();
-    		}
-    	});
+    $(window).scroll(function() {
+        if (  document.documentElement.clientHeight + 
+              $(document).scrollTop() >= document.body.offsetHeight )
+        { 
+            
+            var offset = $("#friends-updates").data("count");
+            var last = $("#friends-updates").data("last");
+            if (last != 0){
+                $.ajax({
+                    url: '/GetUpdate?userId=@who&offset='+offset,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function(data){
+                        var newoffset = data['offset'];
+                        $("#friends-updates").data("last", newoffset);
+                        $("#friends-updates").data("count", offset + parseInt(newoffset));
+                        $("#friends-updates").append(data['content']);
+                    }
+                });
+            }
+        }
     });
     </script>
+    @renderSection("jslinksvideo")
 }
+
 @doLayout()
