@@ -39,7 +39,7 @@ create table actor
     actorId serial primary key,
     videoId integer references video (videoId) on delete cascade,
     personId integer references person (personId) on delete cascade,
-    roleName text[]
+    roleName text
 );
 	
 create table fact
@@ -88,3 +88,4 @@ insert into video (title, runtime, type, genre, language, countryCode, synopsis,
 
 insert into person (personName , personGender) values( 'Tim Robbins' , 'male'),( 'Frank Darabont' , 'male'),( 'Castle Rock Entertainment' , 'other'),( 'Henry Fonda' , 'male'),( 'Sidney Lumet' , 'male'),( 'Orion-Nova Productions' , 'other'),( 'Christian Bale' , 'male'),( 'Christopher Nolan' , 'male'),( 'Warner Bros.' , 'other'),( 'Al Pacino' , 'male'),( 'Francis Ford Coppola' , 'male'),( 'Paramount Pictures' , 'other'),( 'Liam Neeson' , 'male'),( 'Steven Spielberg' , 'male'),( 'Universal Pictures' , 'other'),( 'Clint Eastwood' , 'male'),( 'Sergio Leone' , 'male'),( 'Produzioni Europee Associati (PEA)' , 'other'),( 'John Travolta' , 'male'),( 'Quentin Tarantino' , 'male'),( 'Miramax Films' , 'other'),( 'Marlon Brando' , 'male'),( 'Francis Ford Coppola' , 'male'),( 'Paramount Pictures' , 'other'),( 'Elijah Wood' , 'male'),( 'Peter Jackson' , 'male'),( 'New Line Cinema' , 'other'),( 'Elijah Wood' , 'male'),( 'Peter Jackson' , 'male'),( 'New Line Cinema' , 'other');
 
+insert into actor (videoId , personId, roleName) values( '1' , '1' , 'Andy Duferen'),( '2' , '2' , 'Juror #8 '),( '3' , '3' , 'Bruce Wayne'),( '4' , '4' , 'Michael'),( '5' , '5' , 'Oskar Schindler'),( '6' , '6' , 'Blondie '),( '7' , '7' , 'Vincent Vega'),( '8' , '8' , 'Don Vito Corleone'),( '9' , '9' , 'Frodo'),( '10' , '10' , 'Frodo Baggins');
