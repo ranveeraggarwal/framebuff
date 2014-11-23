@@ -33,18 +33,21 @@
     </div><!-- End container -->
  
     <div class="container chat-wrapper">
-        <form id="do-chat">
-            <h2 class="alert alert-success"></h2>
-            <table id="response" class="table table-bordered"></table>
-            <fieldset>
-                
-                <div class="controls" style="position:fixed; bottom: 10px;">
-                    <input type="text" class="input-block-level" placeholder="Your message..." id="message" style="height:60px"/>
-                    <input type="submit" class="btn btn-primary"
-                        value="Send message" />
-                    <button class="btn" type="button" id="leave-room">Leave
-                        room</button>
-                </div>
-            </fieldset>
-        </form>
+    	<div class="row">
+    		<div class="col-md-12">
+    			<form id="do-chat">
+		            <h2 class="alert alert-success"></h2>
+		            <table id="response" class="table table-bordered table-responsive"></table>
+		            <fieldset>
+		                <div class="controls" style="position:fixed; bottom: 10px;">
+		                    <input type="text" class="input-block-level" placeholder="Your message..." id="message" style="height:40px"/>
+		                    <input type="submit" class="btn btn-primary"
+		                        value="Send message" />
+		                    <button class="btn" type="button" id="leave-room">Leave
+		                        room</button>
+		                </div>
+		            </fieldset>
+		        </form>	
+    		</div>
+    	</div>
     </div>

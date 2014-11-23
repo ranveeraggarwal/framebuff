@@ -37,8 +37,8 @@ function printMessage(msg){
 		});
 	}
 
-	var $messageLine = $('<tr><td class="user label label-info">' + userName
-			+ '</td><td class="message badge">' + msg.message + ' : sent on '
+	var $messageLine = $('<tr><td class="user label-info col-md-2">' + userName
+			+ '</td><td class="message col-md-8" style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><div>' + msg.message + '</div></td><td class="message label-info col-md-1">'
 			+ currDate.toLocaleDateString() + '</td></tr>');
 	$chatWindow.append($messageLine);
 }
