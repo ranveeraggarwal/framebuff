@@ -3,7 +3,11 @@
 @set(title = "FrameBuff")
 @args String who
 
-<h1> Hello @who ! </h1>
+@section('bg')
+{
+	background-image:url('/images/mainbg.jpg');
+	background-size:cover;
+}
 
 @section("navlinks") {
 	<li class="dropdown">
@@ -41,3 +45,22 @@
 	    </ul>
 	</li>
 }
+
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12 well">
+			<h1>Welcome to Framebuff!</h1>
+			<hr>
+			<h3>What is Framebuff?</h3>
+			<p><strong>Well, are you a Movie Buff? Or a TV Serial Buff? Do you think that you lack like-minded people that watch the same shows as you?</strong> Well then you've come, to the right place. Explore, discuss facts, trivia, general knowledge about your favourite movie or video. Right here!</p>
+			<hr>
+			<h3>What do I need to do?</h3>
+			<p>Just hit the sign up button!</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 well" style="margin-top:10%;">
+			<center><a href="/signup/index.html" class="btn btn-success btn-xlarge">Sign Up!</a></center>
+		</div>
+	</div>
+</div>
