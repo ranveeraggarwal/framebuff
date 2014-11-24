@@ -149,3 +149,7 @@ $(document).ready(function() {
 	});
 	
 });
+
+var rowpos = $('#response tr:last').position();
+
+$('#response').scrollTop(rowpos.top);

@@ -52,7 +52,7 @@ public class VideoSearch extends HttpServlet {
 		Map<String, Object> args = new HashMap<String, Object>();
 		try(Handle h = dbi.open()){
 			List<Video> videos = h.
-					createQuery("select videoId, title from video where lower(title) like lower('%' || :title || '%')")
+					createQuery("select videoId, title, poster from video where lower(title) like lower('%' || :title || '%')")
 					.bind("title", searchQuery)
 					.map(new Mapper<Video>(Video.class))
 					.list();

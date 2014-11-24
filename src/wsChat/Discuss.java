@@ -44,7 +44,7 @@ public class Discuss extends HttpServlet {
 		DBI dbi = CommonSQL.getDbi();
 		List<Video> list = null;
 		try (Handle h = dbi.open()){
-			list = h.createQuery("SELECT videoId, title FROM video WHERE 1=1")
+			list = h.createQuery("SELECT videoId, title, poster FROM video WHERE 1=1")
 					.map(new Mapper<Video>(Video.class)).list();
 		}
 		Map<String, List<Video>> map = new HashMap<String, List<Video>>();

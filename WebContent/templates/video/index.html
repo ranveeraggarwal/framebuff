@@ -12,13 +12,23 @@
 		<div class="col-md-9">
 			<div class="row">
 				<div class="col-md-6">
-					<img class="img-responsive img-thumbnail" src="/images/movies/posters/@(videoDetails.getVideoId()).png" />
+					<img class="img-responsive img-thumbnail" src="@videoDetails.getPoster()" />
 				</div>
 				<div class="col-md-6">
 					<h1>@videoDetails.getTitle()</h1>
 					<div class="dropdown">
 					  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-					    <span id="movie-user-status">@userVideo.getWatch()</span>
+					    <span id="movie-user-status">
+					    @{
+					       String watch = null;
+					       try{
+					           watch = userVideo.getWatch();
+					       } catch (Exception e){
+					           watch = "Choose Action";
+					       }
+					     } 
+					     @watch
+					    </span>
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -97,7 +107,8 @@
 							    <div class="tab-content">
 							        <div class="tab-pane active" id="cast">
 							        @for(Actor actor: videoDetails.getActors()){
-							         @actor.getPerson().getPersonName() as @actor.getRoleName().toString()
+							         @actor.getPerson().getPersonName() as 
+							         @actor.getRoleName()
 							        }
 							        </div>
 							        <div class="tab-pane" id="dandp">
@@ -126,8 +137,14 @@
 			  	<div class="panel-heading panel-zero">
 			    	<h3 class="panel-title">User Ratings</h3>
 			  	</div>
+			  	<p>Overall Rating: <em id="userRating">@videoDetails.getUserRating()</em></p>
 			  	<div class="panel-body">
 				    	<div class="rating">
+				    	    <span><input type="radio" name="rating" id="str10" value="10"><label for="str10"></label></span>
+                            <span><input type="radio" name="rating" id="str9" value="9"><label for="str9"></label></span>
+                            <span><input type="radio" name="rating" id="str8" value="8"><label for="str8"></label></span>
+                            <span><input type="radio" name="rating" id="str7" value="7"><label for="str7"></label></span>
+                            <span><input type="radio" name="rating" id="str6" value="6"><label for="str6"></label></span>
 						    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
 						    <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
 						    <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
