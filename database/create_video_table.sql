@@ -39,7 +39,7 @@ create table actor
     actorId serial primary key,
     videoId integer references video (videoId) on delete cascade,
     personId integer references person (personId) on delete cascade,
-    roleName text
+    roleName text[]
 );
 	
 create table fact
@@ -119,16 +119,16 @@ insert into person (personName , personGender) values
 ( 'New Line Cinema' , 'other');
 
 insert into actor (videoId , personId, roleName) values
-( '1' , '1' , 'Andy Duferen'),
-( '2' , '2' , 'Juror #8 '),
-( '3' , '3' , 'Bruce Wayne'),
-( '4' , '4' , 'Michael'),
-( '5' , '5' , 'Oskar Schindler'),
-( '6' , '6' , 'Blondie '),
-( '7' , '7' , 'Vincent Vega'),
-( '8' , '8' , 'Don Vito Corleone'),
-( '9' , '9' , 'Frodo'),
-( '10' , '10' , 'Frodo Baggins');
+( '1' , '1' , '{Andy Duferen}'),
+( '2' , '2' , '{Juror #8}'),
+( '3' , '3' , '{Bruce Wayne, Batman}'),
+( '4' , '4' , '{Michael}'),
+( '5' , '5' , '{Oskar Schindler}'),
+( '6' , '6' , '{Blondie} '),
+( '7' , '7' , '{Vincent Vega}'),
+( '8' , '8' , '{Don Vito Corleone}'),
+( '9' , '9' , '{Frodo}'),
+( '10' , '10' , '{Frodo Baggins}');
 
 insert into producer (videoId , personId) values
 ( '1' , '1'),

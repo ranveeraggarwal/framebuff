@@ -49,6 +49,7 @@ public class VideoPage extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		args.put("videoDetails", vidObject);
 		args.put("userVideo", userVideo);
+		args.put("who", userId.toString());
 		out.println(Rythm.render("WebContent/templates/video/index.html", args));
 	}
 

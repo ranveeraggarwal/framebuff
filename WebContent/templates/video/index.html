@@ -57,24 +57,12 @@
 							        	<a href="#trivia" data-toggle="tab">Trivia</a>
 							        </li>
 							        <li>
-							        	<a href="#parodies" data-toggle="tab">Parodies</a>
-							        </li>
-							        <li>
-							        	<a href="#references" data-toggle="tab">References</a>
-							        </li>
-							        <li>
-							        	<a href="#bestcomments" data-toggle="tab">Best Comments</a>
-							        </li>
-							        <li>
-							        	<a href="#related" data-toggle="tab">More Links</a>
+							            <a href="#fact" data-toggle="tab">Facts</a>
 							        </li>
 							    </ul>
 							    <div class="tab-content">
 							        <div class="tab-pane active" id="trivia">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
-							        <div class="tab-pane" id="parodies">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</div>
-							        <div class="tab-pane" id="references">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
-							        <div class="tab-pane" id="bestcomments">Fouthamo, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
-							        <div class="tab-pane" id="related">Fifthamo, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+                                    <div class="tab-pane" id="facts">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
 							    </div>
 							</div>
 						</div>
@@ -97,33 +85,26 @@
 							        <li>
 							        	<a href="#dandp" data-toggle="tab">Directors &amp; Producers</a>
 							        </li>
-							        <li>
-							        	<a href="#vfx" data-toggle="tab">VFX Team</a>
-							        </li>
-							        <li>
-							        	<a href="#others" data-toggle="tab">Others</a>
-							        </li>
 							    </ul>
 							    <div class="tab-content">
 							        <div class="tab-pane active" id="cast">
 							        @for(Actor actor: videoDetails.getActors()){
-							         @actor.getPerson().getPersonName() as 
-							         @actor.getRoleName()
+							         @actor.getPerson().getPersonName() as
+							         @actor.getRoleName().toString()
+							         <br>
 							        }
 							        </div>
 							        <div class="tab-pane" id="dandp">
 							        Director(s):
 							        @for(Director director: videoDetails.getDirectors()){
-							         @director.getPerson().getPersonName()
-							         }
-							         Producers:
+							         @director.getPerson().getPersonName() <br>
+							         } <br>
+							         Producer(s):
 							         @for(Producer producer: videoDetails.getProducers()){
-							           @producer.getPerson().getPersonName()
+							           @producer.getPerson().getPersonName() <br>
 							           }
 							        </div>
-							        <div class="tab-pane" id="vfx">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
-							        <div class="tab-pane" id="others">Fouthamo, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
-							    </div>
+							     </div>
 							</div>
 						</div>
 				  	</div>
@@ -140,16 +121,16 @@
 			  	<p>Overall Rating: <em id="userRating">@videoDetails.getUserRating()</em></p>
 			  	<div class="panel-body">
 				    	<div class="rating">
-				    	    <span><input type="radio" name="rating" id="str10" value="10"><label for="str10"></label></span>
-                            <span><input type="radio" name="rating" id="str9" value="9"><label for="str9"></label></span>
-                            <span><input type="radio" name="rating" id="str8" value="8"><label for="str8"></label></span>
-                            <span><input type="radio" name="rating" id="str7" value="7"><label for="str7"></label></span>
-                            <span><input type="radio" name="rating" id="str6" value="6"><label for="str6"></label></span>
-						    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-						    <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-						    <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-						    <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-						    <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+				    	    <span class="@if(userVideo.getRating() == 10){checked}"><input type="radio" name="rating" id="str10" value="10"><label for="str10"></label></span>
+                            <span class="@if(userVideo.getRating() == 9){checked}"><input type="radio" name="rating" id="str9" value="9"><label for="str9"></label></span>
+                            <span class="@if(userVideo.getRating() == 8){checked}"><input type="radio" name="rating" id="str8" value="8"><label for="str8"></label></span>
+                            <span class="@if(userVideo.getRating() == 7){checked}"><input type="radio" name="rating" id="str7" value="7"><label for="str7"></label></span>
+                            <span class="@if(userVideo.getRating() == 6){checked}"><input type="radio" name="rating" id="str6" value="6"><label for="str6"></label></span>
+						    <span class="@if(userVideo.getRating() == 5){checked}"><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+						    <span class="@if(userVideo.getRating() == 4){checked}"><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+						    <span class="@if(userVideo.getRating() == 3){checked}"><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+						    <span class="@if(userVideo.getRating() == 2){checked}"><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+						    <span class="@if(userVideo.getRating() == 1){checked}"><input type="radio" name="rating" id="str1" value="1" ><label for="str1"></label></span>
 						</div>
 			  	</div>
 			</div>
@@ -166,8 +147,22 @@
 			  	<div class="panel-body">
 			    	<p>
 				    	<strong>Runtime:</strong> @videoDetails.getRuntime()<br>
-				    	<strong>Type:</strong> @videoDetails.getType()<br>
-				    	<strong>Genre:</strong> @videoDetails.getGenre()<br>
+				    	<strong>Type:</strong> 
+				    	 @{
+				    	   Integer typeId = videoDetails.getType();
+				    	   String type = null;
+				    	   if (typeId == 1) {
+				    	       type = "Movie";
+				    	   }
+				    	   else if (typeId == 2) {
+				    	       type = "TV Show";
+				    	   }
+				    	   else if (typeId == 3){
+				    	       type = "Other";
+				    	    }
+				    	 }
+				    	 @type
+				    	 <br>
 				    	<strong>Language:</strong> @videoDetails.getLanguage()<br>
 				    	<strong>Country:</strong> @videoDetails.getCountryCode()
 			    	</p>

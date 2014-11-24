@@ -63,7 +63,8 @@ $(document).ready(function(){
             		}
             		data = data.split('~');
             		console.log(data);
-            		$("#userRating").html(data[0]);
+            		var rate = parseFloat(data[0]);
+            		$("#userRating").html(rate.toFixed(2));
             	}
             });
         }); 
