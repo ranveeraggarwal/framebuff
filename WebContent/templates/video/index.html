@@ -53,7 +53,7 @@
 					  	<div class="panel-body">
 					    	<form role="form" action="/Review" method="post">
 					    		<div class="form-group">
-					                <textarea class="form-control" id="review" name="review" placeholder="Write your review here ..."></textarea>
+					                <textarea class="form-control" id="review" name="review" placeholder="Write your review here ...">@userVideo.getReview()</textarea>
 					                <input type="hidden" name="videoid" value="@videoDetails.getVideoId()">
 					            </div>
 					            <button type="submit" class="btn btn-primary">Submit</button>
