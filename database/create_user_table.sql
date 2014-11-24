@@ -8,11 +8,12 @@ create table users
 	userId serial,
 	firstName varchar(50) not NUll,
 	lastName varchar(50),
-	username varchar(50) not Null unique,
+	username varchar(50) unique,
 	email varchar(50) not null unique,
 	countryCode varchar(20),
 	language varchar(50), 
 	phone varchar(12),
+	aboutme text,
 	primary key (userId)
 	);
 	

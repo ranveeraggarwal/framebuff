@@ -13,7 +13,7 @@
 	                    <form class="form" role="form" method="post" action="" accept-charset="UTF-8" id="login-nav">
 	                        <div class="form-group">
 	                            <label class="sr-only" for="emailInput">Email address</label>
-	                            <input type="email" class="form-control" name="emailInput" id="emailInput" placeholder="Email address" required>
+	                            <input type="text" class="form-control" name="emailInput" id="emailInput" placeholder="Email address" required>
 	                        </div>
 	                        <div class="form-group">
 	                            <label class="sr-only" for="passwordInput">Password</label>
@@ -45,25 +45,25 @@
 		<div class="col-md-12">
 			<h1>Sign up for FrameBuff</h1>
 			<hr>
-			<form role="form">
-			<div class="form-group">
-			    <label for="username">Username</label>
-			    <input type="text" class="form-control" id="username" placeholder="Choose a Username">
+			<form role="form" action="/signup" method="post">
+			  <div class="form-group">
+			    <label for="email">Email address</label>
+			    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
 			  </div>
 			  <div class="form-group">
-			    <label for="InputEmail">Email address</label>
-			    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
+			    <label for="password">Password</label>
+			    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
 			  </div>
 			  <div class="form-group">
-			    <label for="InputPassword">Password</label>
-			    <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-			  </div>
-			  <div class="form-group">
-			    <label for="InputPassword1">Confirm Password</label>
-			    <input type="password" class="form-control" id="InputPassword1" placeholder="Confirm Password">
+			    <label for="password2">Confirm Password</label>
+			    <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
 			  </div>
 			  <button type="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>
 	</div>
 </div>
+
+@section('jslinks'){
+    <script src="/js/signup.js"></script>
+}

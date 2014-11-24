@@ -1,9 +1,7 @@
-package home;
+package api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,24 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
-import org.skife.jdbi.v2.util.IntegerMapper;
+import org.skife.jdbi.v2.util.LongMapper;
 
 import common.CommonSQL;
 
 /**
- * Servlet implementation class SignUp
+ * Servlet implementation class CheckUsername
  */
-@WebServlet("/signup")
-public class SignUp extends HttpServlet {
+@WebServlet("/CheckUsername")
+public class CheckUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUp() {
+    public CheckUsername() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,10 +35,43 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String username = request.getParameter("username");
+		String email = request.getParameter("email");
+		DBI dbi = CommonSQL.getDbi();
 		PrintWriter out = response.getWriter();
-		Map<String, Object> args = new HashMap<String, Object>();
-		out.println(Rythm.render(
-				"WebContent/templates/signup/index.html", args));
+		try(Handle h = dbi.open()){
+			if (username != null){
+				Long count = h.createQuery("select count(username) from users where username = :username")
+						.bind("username", username)
+						.map(LongMapper.FIRST)
+						.first();
+				if (count == 0){
+					out.println("TRUE");
+					return;
+				}
+				else {
+					out.println("FALSE");
+					return;
+							
+				}
+			}
+			else if (email != null){
+				Long count = h.createQuery("select count(email) from users where email = :email")
+						.bind("email", email)
+						.map(LongMapper.FIRST)
+						.first();
+				if (count == 0){
+					out.println("TRUE");
+					return;
+				}
+				else {
+					out.println("FALSE");
+					return;
+							
+				}
+			}
+		}
+		
 	}
 
 	/**
@@ -49,22 +79,6 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		DBI dbi = CommonSQL.getDbi();
-		try(Handle h = dbi.open()){
-			h.begin();
-			Integer userId = h.createQuery("insert into users (email) values (:email) returning userId")
-					.bind("email", email)
-					.map(IntegerMapper.FIRST).first();
-			h.execute("insert into auth (userId, password) values (?, ?)", userId, password);
-			h.commit();
-			request.getSession().setAttribute("userId", userId);
-			response.sendRedirect("/UpdateProfile");
-		} catch(Exception e){
-			System.out.println(e.getMessage());
-			response.sendRedirect("/SignUp");
-		}
 	}
 
 }

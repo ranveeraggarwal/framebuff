@@ -11,24 +11,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Users;
+
 import org.rythmengine.Rythm;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
-import org.skife.jdbi.v2.util.IntegerMapper;
 
 import common.CommonSQL;
 
 /**
- * Servlet implementation class SignUp
+ * Servlet implementation class UpdateProfile
  */
-@WebServlet("/signup")
-public class SignUp extends HttpServlet {
+@WebServlet("/UpdateProfile")
+public class UpdateProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignUp() {
+    public UpdateProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +41,9 @@ public class SignUp extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		Map<String, Object> args = new HashMap<String, Object>();
-		out.println(Rythm.render(
-				"WebContent/templates/signup/index.html", args));
+		Users user = CommonSQL.getUserByUserId((Integer) request.getSession().getAttribute("userId"));
+		args.put("user", user);
+		out.println(Rythm.render("WebContent/templates/signup/page2.html", args));
 	}
 
 	/**
@@ -49,21 +51,24 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String username = request.getParameter("username");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String country = request.getParameter("country");
+		String language = request.getParameter("language");
+		String phone = request.getParameter("phoneno");
+		String aboutme = request.getParameter("aboutme");
+		
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		DBI dbi = CommonSQL.getDbi();
 		try(Handle h = dbi.open()){
-			h.begin();
-			Integer userId = h.createQuery("insert into users (email) values (:email) returning userId")
-					.bind("email", email)
-					.map(IntegerMapper.FIRST).first();
-			h.execute("insert into auth (userId, password) values (?, ?)", userId, password);
-			h.commit();
-			request.getSession().setAttribute("userId", userId);
-			response.sendRedirect("/UpdateProfile");
+			h.update("update users set username=?, firstname=?, lastname=?, countrycode=?, language=?, phone=?, aboutme=? where userId = ?", 
+					username, firstname, lastname, country, language, phone, aboutme, userId);
+			response.sendRedirect("/user/"+userId.toString());
 		} catch(Exception e){
 			System.out.println(e.getMessage());
-			response.sendRedirect("/SignUp");
+			response.sendRedirect("/UpdateProfile");
+			return;
 		}
 	}
 

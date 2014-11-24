@@ -11,6 +11,7 @@ public class Users {
 	private String countryCode;
 	private String language;
 	private String phone;
+	private String aboutMe;
 	/**
 	 * @return the userId
 	 */
@@ -106,6 +107,18 @@ public class Users {
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	/**
+	 * @return the aboutMe
+	 */
+	public String getAboutMe() {
+		return aboutMe;
+	}
+	/**
+	 * @param aboutMe the aboutMe to set
+	 */
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
 	}
 	
 }

@@ -1,0 +1,52 @@
+@extends(../logged_in.html)
+
+@import models.*
+@set(title = "FrameBuff")
+@args String who
+@args Users user
+
+
+<div class="container" >
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Update Profile</h1>
+            <hr>
+            <form role="form" action="/UpdateProfile" method="post">
+              <div class="form-group">
+                <label for="username">Choose a unique Username</label>
+                <input type="username" value="@user.getUsername()" class="form-control" id="username" name="username" placeholder="Enter username">
+              </div>
+              <div class="form-group">
+                <label for="Firstname">Firstname</label>
+                <input type="firstname" value="@user.getFirstName()" class="form-control" id="firstname" name="firstname" placeholder="Firstname" required>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input type="lastname" value="@user.getLastName()" class="form-control" id="lastname" name="lastname" placeholder="Lastname">
+              </div>
+              <div class="form-group">
+                <label for="country">Country</label>
+                <input type="country" value="@user.getCountryCode()" class="form-control" id="country" name="country" placeholder="country">
+              </div>
+              <div class="form-group">
+                <label for="language">Language</label>
+                <input type="language" value="@user.getLanguage()" class="form-control" id="language" name="language" placeholder="language">
+              </div>
+              <div class="form-group">
+                <label for="phoneno">Phone Number</label>
+                <input type="phoneno" value="@user.getPhone()" class="form-control" id="phoneno" name="phoneno" placeholder="Phone number with country code">
+              </div>
+              <div class="form-group">
+                <label for="aboutme">About Me</label>
+                <textarea class="form-control" id="aboutme" name="aboutme" placeholder="about me">@user.getAboutMe()
+                </textarea>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section('jslinks'){
+    <script src="/js/signup.js"></script>
+}

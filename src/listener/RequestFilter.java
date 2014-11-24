@@ -52,7 +52,8 @@ public class RequestFilter implements Filter {
 				requestURI.startsWith("/favicon") ||
 				requestURI.startsWith("/fonts/") ||
 				requestURI.startsWith("/images/") ||
-				requestURI.startsWith("/signup/")
+				requestURI.startsWith("/signup") ||
+				requestURI.startsWith("/CheckUsername")
 				){
 			chain.doFilter(request, response);
 		}
