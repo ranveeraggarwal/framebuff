@@ -15,6 +15,8 @@ import models.UserVideo;
 import models.Video;
 
 import org.rythmengine.Rythm;
+import org.skife.jdbi.v2.DBI;
+import org.skife.jdbi.v2.Handle;
 
 import common.CommonSQL;
 
