@@ -3,6 +3,8 @@
 @import models.*
 
 @args Users userDetails
+@args String who
+@args Boolean follow
 
 @set(title = userDetails.getFirstName())
 
@@ -28,7 +30,25 @@
 			  	</div>
 			  	<div class="panel-body">
 			    	<p>
-			    		<center><a class="btn btn-large btn-primary" type="button">Follow</a></center>
+			    	@{
+			    	    Integer whoId = Integer.parseInt(who);
+			    	    Integer x = whoId - userDetails.getUserId();
+			    	  }
+			    	
+			    	@if(x != 0){
+			    	
+			    		<center>
+			    		<a class="btn btn-large btn-primary" id="follow-user" type="button">
+			    		
+			    		@if (follow) {
+			    		   UnFollow
+			    		 } else {
+			    		   Follow
+			    		   }
+			    		</a>
+			    		</center>
+			    		
+			    	}
 			    		<hr>
 				    	Username: @userDetails.getUsername()
 				    	<hr>
@@ -45,3 +65,10 @@
 		</div>
 	</div>
 </div>
+
+@section('jslinksvideo'){
+    <script>
+    var toFollow = '@userDetails.getUserId()';
+    </script>
+    <script src="/js/follow.js"></script>
+}

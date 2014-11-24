@@ -169,5 +169,15 @@ public class CommonSQL {
 			return userVideo;
 		}
 	}
+	
+	public static Boolean checkFollowStatus(Integer follower, Integer followee){
+		try(Handle h = dbi.open()){
+			List<Map<String, Object>> rs = h.select("select followId from follow where follower = ? and followee = ?", follower, followee);
+			if (rs.size() == 0){
+				return false;
+			}
+			return true;
+		}
+	}
 
 }

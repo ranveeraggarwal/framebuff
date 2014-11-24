@@ -39,11 +39,15 @@ public class UserPage extends HttpServlet {
 		Map <String, Object> args = new HashMap <String, Object> ();
 		String requestURI = request.getRequestURI();
 		Integer userId = Integer.parseInt(requestURI.split("/")[2]);
+		Integer currentUserId = (Integer) request.getSession().getAttribute("userId");
+		Boolean followStatus = CommonSQL.checkFollowStatus(currentUserId, userId);
 
 		Users userObject = CommonSQL.getUserByUserId(userId);
 
 		PrintWriter out = response.getWriter();
 		args.put("userDetails", userObject);
+		args.put("who", currentUserId.toString());
+		args.put("follow", followStatus);
 		out.println(Rythm.render("WebContent/templates/users/index.html", args));
 	}
 
