@@ -4,7 +4,17 @@
 
 @section("jslinks")
 {
-    <script src="/js/chat.js"></script>    
+    <script src="/js/chat.js"></script>
+    <script>
+    $(".videoTitle").each(function (i, obj){
+    	var html  = $(this).html();
+    	var truncate = html.substring(0, 45);
+    	if (truncate != html){
+    		truncate = truncate + "...";
+    	}
+    	$(this).html(truncate);
+    })
+    </script>
 }
 
 <div class="container chat-signin">
@@ -18,10 +28,11 @@
                 <form class="chat-signin">
                     <div class="col-xs-18 col-sm-6 col-md-3">
                       <div class="thumbnail">
-                        <img src="http://placehold.it/500x300" alt="">
+                        <img src="@v.getPoster()" class="img-responsive" style="height:none !important;" alt="@v.getTitle()" width="260" height="380">
                           <div class="caption">
-                            <h4 class="videoTitle">@v.getTitle()</h4>
-                            <p>Movie Description</p>
+                            <a href="/video/@v.getVideoId()">
+                            <h4 class="videoTitle" style="height:40px;">@v.getTitle()</h4>
+                            </a>
                             <p><button class="btn btn-info videoId" type="submit" data-value="@v.getVideoId()">Join</button></p>
                         </div>
                       </div>

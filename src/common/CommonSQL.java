@@ -68,7 +68,7 @@ public class CommonSQL {
 		}
 	}
 	
-	public static void updateVideoWithPerson(Video video){
+	public static Video updateVideoWithPerson(Video video){
 		String sqlActors = "select actorId, videoId, roleName, "
 				+ "personId as person_personId, personName as person_personName, personGender as person_personGender " 
 				+ "from actor natural join person where videoId = :videoId";
@@ -81,6 +81,7 @@ public class CommonSQL {
 				+ "personId as person_personId, personName as person_personName, personGender as person_personGender " 
 				+ "from producer natural join person where videoId = :videoId";
 		try(Handle h = dbi.open()){
+			h.begin();
 			Mapper<Actor> mapper = new Mapper<Actor>(Actor.class);
 			mapper.register(new Jdbc4ArrayConverter(), List.class);
 			List<Actor> actors = h
@@ -98,6 +99,8 @@ public class CommonSQL {
 			video.setActors(actors);
 			video.setDirectors(directors);
 			video.setProducers(producers);
+			h.commit();
+			return video;
 		}
 	}
 	

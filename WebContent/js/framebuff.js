@@ -51,6 +51,21 @@ $(document).ready(function(){
         $('input:radio').change(
         function(){
             var userRating = this.value;
-            alert(userRating);
+            var path = window.location.pathname;
+            var videoId = path.split("/")[2];
+            $.ajax({
+            	url: '/MovieRating?videoId='+videoId+"&rating="+userRating,
+            	type: 'GET',
+            	success: function(data){
+            		data = data.trim();
+            		if (data == null){
+            			return;
+            		}
+            		data = data.split('~');
+            		console.log(data);
+            		var rate = parseFloat(data[0]);
+            		$("#userRating").html(rate.toFixed(2));
+            	}
+            });
         }); 
     });

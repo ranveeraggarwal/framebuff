@@ -38,7 +38,7 @@ function printMessage(msg){
 	}
 
 	var $messageLine = $('<tr><td class="user label-info col-md-2">' + userName
-			+ '</td><td class="message col-md-8" style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><div>' + msg.message + '</div></td><td><input type="radio" name="trivia" value="trivia"> Trivia <br><input type="radio" name="fact" value="fact"> Fact </td><td class="message label-info col-md-1">'
+			+ '</td><td class="message col-md-8" style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><div>' + msg.message + '</div></td><td><input type="checkbox" name="trivia" value="trivia"> Trivia <br><input type="checkbox" name="fact" value="fact"> Fact </td><td class="message label-info col-md-1">'
 			+ currDate.toLocaleDateString() + '</td></tr>');
 	$chatWindow.append($messageLine);
 }

@@ -14,7 +14,7 @@
                                     @{
                                         Users user = CommonSQL.getUserByUserId(userVideo.getUserId());
                                     }
-                                    @user.getFirstName() @user.getLastName()
+                                    <a href="/user/@user.getUserId()">@user.getFirstName() @user.getLastName()</a>
                                     @if (userVideo.getWatch() == "watched"){
                                         has watched
                                         }

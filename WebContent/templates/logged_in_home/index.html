@@ -20,20 +20,6 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-success panel-zero" style="margin-top:20px;">
-                <div class="panel-heading panel-zero">
-                    <h3 class="panel-title">Update Movies!</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="What're you watching?">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                      </span>
-                    </div>
-                </div>
-            </div>
-            <hr>
             <h1>Updates from friends </h1>
             
             <div id="friends-updates" data-count="@offset" data-last="@offset">
@@ -71,7 +57,7 @@
                             <div class="tab-pane" id="tvs">
                                 <b>Watching:</b> <a href="#">@tape.get("2").get("watching")</a><hr>
                                 <b>Watched:</b> <a href="#">@tape.get("2").get("watched")</a><hr>
-                                <b>Want to Watch:</b> <a href="#">@tape.get("1").get("want")</a>
+                                <b>Want to Watch:</b> <a href="#">@tape.get("2").get("want")</a>
                             </div>
                             <div class="tab-pane" id="others">
                                 <b>Watching:</b> <a href="#">@tape.get("3").get("watching")</a><hr>

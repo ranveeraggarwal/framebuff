@@ -57,17 +57,20 @@ public class UserVideoStatus extends HttpServlet {
 		
 		try(Handle h = dbi.open()){
 			h.begin();
-			h.execute("delete from userVideo where userId = ? and videoId = ?", userId, videoId);
-			if ("watched".equals(status)){
-				h.execute("insert into userVideo (userId, videoId, watch) values (?, ?, 'watched')", userId, videoId);
-				
+			Integer updated = null;
+			if ("watching".equals(status)){
+				updated = h.update("update userVideo set watch = 'watching' where userId = ? and videoId = ?",  userId, videoId);
 			}
-			else if ("watching".equals(status)){
-				h.execute("insert into userVideo (userId, videoId, watch) values (? ,?, 'watching')", userId, videoId);
+			else if ("watched".equals(status)){
+				updated = h.update("update userVideo set watch = 'watched' where userId = ? and videoId = ?",  userId, videoId);
 			}
 			else {
-				h.execute("insert into userVideo (userId, videoId, watch) values (?, ?, 'want')", userId, videoId);
+				updated = h.update("update userVideo set watch = 'want' where userId = ? and videoId = ?",  userId, videoId);
 			}
+			if (updated == 0){
+				h.execute("insert into userVideo (userId, videoId, watch) values (?, ?, CAST(? AS watchtype))", userId, videoId, status);
+			}
+			
 			h.commit();
 		}
 	}

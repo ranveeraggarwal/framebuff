@@ -85,8 +85,12 @@ public class Index extends HttpServlet {
 	        
 	        request.getRequestDispatcher("/GetUpdate?offset=0&userId=" + userId.toString()).include(request, responseWrapper);
 			String updates = responseWrapper.toString();
-		
-			Map<String, String> map = Util.MAPPER.readValue(updates, new TypeReference<HashMap<String, String>>(){});
+			Map<String, String> map = new HashMap<String, String>();
+			try{
+				map = Util.MAPPER.readValue(updates, new TypeReference<HashMap<String, String>>(){});
+			} catch(Exception e){
+				
+			}
 			args.put("who", userId.toString());
 			args.put("userVideoes", userVideoes);
 			args.put("tape", tape);
