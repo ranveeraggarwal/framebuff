@@ -9,7 +9,7 @@ public class Video {
 	private Integer runtime;
 	private Integer type;
 	private String poster;
-	private String[] genre;
+	private String genre;
 	private String[] relatedLinks;
 	private String language;
 	private String countryCode;
@@ -73,13 +73,13 @@ public class Video {
 	/**
 	 * @return the genre
 	 */
-	public String[] getGenre() {
+	public String getGenre() {
 		return genre;
 	}
 	/**
 	 * @param genre the genre to set
 	 */
-	public void setGenre(String[] genre) {
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 	
