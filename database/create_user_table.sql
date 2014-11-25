@@ -6,7 +6,7 @@ DROP table if exists follow cascade;
 create table users
 	(
 	userId serial,
-	firstName varchar(50) not NUll,
+	firstName varchar(50),
 	lastName varchar(50),
 	username varchar(50) unique,
 	email varchar(50) not null unique,
@@ -49,20 +49,20 @@ insert into users (firstName, lastName, username, email, countryCode, language, 
     
     
 insert into auth (userId, password) values
-    ('1', 'dheerendra'),
-    ('2', 'ranveer'),
-    ('3', 'nitin'),
-    ('4', 'dora'),
-    ('5', 'suman'),
-    ('6', 'rakesh'),
-    ('7', 'aman'),
-    ('8', 'dinu'),
-    ('9', 'mahi'),
-    ('10', 'rohit'),
-    ('11', 'mannu'),
-    ('12', 'pranay'),
-    ('13', 'akhil'),
-    ('14', 'jaseem')
+    ('1', md5('dheerendra')),
+    ('2', md5('ranveer')),
+    ('3', md5('nitin')),
+    ('4', md5('dora')),
+    ('5', md5('suman')),
+    ('6', md5('rakesh')),
+    ('7', md5('aman')),
+    ('8', md5('dinu')),
+    ('9', md5('mahi')),
+    ('10', md5('rohit')),
+    ('11', md5('mannu')),
+    ('12', md5('pranay')),
+    ('13', md5('akhil')),
+    ('14', md5('jaseem'))
     ;
 
 insert into follow (followee, follower) values 

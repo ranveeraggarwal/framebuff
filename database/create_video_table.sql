@@ -3,8 +3,6 @@ drop table if exists person cascade;
 drop table if exists actor cascade;
 drop table if exists director cascade;
 drop table if exists producer cascade;
-drop table if exists fact cascade;
-drop table if exists trivia cascade;
 drop type if exists gender;
 
 --type 1 for movies, 2 for tv shows, 3 for others
@@ -41,24 +39,7 @@ create table actor
     personId integer references person (personId) on delete cascade,
     roleName text[]
 );
-	
-create table fact
-(
-    factId serial primary key,
-    videoId integer references video(videoId) on delete cascade,
-    factText text,
-    upvotes integer,
-    downvotes integer
-);
 
-create table trivia
-(
-    triviaId serial primary key,
-    videoId integer references video (videoId) on delete cascade,
-    triviaText text,
-    upvotes integer,
-    downvotes integer
-);
 
 create table director
 (

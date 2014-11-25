@@ -114,23 +114,22 @@ public class Index extends HttpServlet {
 		try (Handle h = dbi.open()) {
 			Integer userId = h
 					.createQuery(
-							"SELECT userId FROM users NATURAL JOIN auth WHERE email=:email AND password=:password")
+							"SELECT userId FROM users NATURAL JOIN auth WHERE email=:email AND password=md5(:password)")
 					.bind("email", usernameEmail).bind("password", password)
 					.map(IntegerMapper.FIRST).first();
 			if (userId != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
-				doGet(request, response);
 			}
 			userId = h
-					.createQuery("SELECT userId FROM users NATURAL JOIN auth WHERE username=:username AND password=:password")
+					.createQuery("SELECT userId FROM users NATURAL JOIN auth WHERE username=:username AND password=md5(:password)")
 					.bind("username", usernameEmail).bind("password", password)
 					.map(IntegerMapper.FIRST).first();
 			if (userId != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
-				doGet(request, response);
 			}
+			response.sendRedirect("/");
 		}
 	}
 

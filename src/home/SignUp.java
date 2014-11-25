@@ -57,7 +57,7 @@ public class SignUp extends HttpServlet {
 			Integer userId = h.createQuery("insert into users (email) values (:email) returning userId")
 					.bind("email", email)
 					.map(IntegerMapper.FIRST).first();
-			h.execute("insert into auth (userId, password) values (?, ?)", userId, password);
+			h.execute("insert into auth (userId, password) values (?, md5(?))", userId, password);
 			h.commit();
 			request.getSession().setAttribute("userId", userId);
 			response.sendRedirect("/UpdateProfile");
