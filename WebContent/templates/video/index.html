@@ -53,7 +53,9 @@
 					  	<div class="panel-body">
 					    	<form role="form" action="/Review" method="post">
 					    		<div class="form-group">
-					                <textarea class="form-control" id="review" name="review" placeholder="Write your review here ...">@userVideo.getReview()</textarea>
+					                <textarea class="form-control" id="review" name="review" placeholder="Write your review here ...">
+					                @if(userVideo != null){@userVideo.getReview()}
+					                </textarea>
 					                <input type="hidden" name="videoid" value="@videoDetails.getVideoId()">
 					            </div>
 					            <button type="submit" class="btn btn-primary">Submit</button>
@@ -213,11 +215,10 @@
     $(".movie-status").click(function (e){
     	e.preventDefault();
     	var status = $(this).data("value");
-    	console.log(status);
     	$.ajax({
     		url: '/UserVideoStatus?status='+status+'&videoId='+videoId,
     		type: 'GET',
-    		primary: function (data){
+    		success: function (data){
     			 if (data.trim() != "INVALID"){
     				 $("#movie-user-status").html(status);
     			 }
